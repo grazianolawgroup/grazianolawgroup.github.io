@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | Graziano Law Group, PLLC</title>
-<meta name="description" content="Meet Philip W. Graziano, Esq., attorney and founder of Graziano Law Group, PLLC in Pembroke Pines, Florida.">
+<meta name="description" content="Meet Philip W. Graziano, Esq., attorney and founder of Graziano Law Group, PLLC in Pembroke Pines, Florida — offering in-person and virtual representation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,6 +16,8 @@
   <div class="container">
     <div>15800 Pines Blvd., Suite 3081, Pembroke Pines, FL 33027</div>
     <div>
+      <span class="virtual-pill">&#127909; Virtual Consultations Available</span>
+      <span class="sep">|</span>
       <a href="tel:+19544406608">(954) 440-6608</a>
       <span class="sep">|</span>
       <a href="mailto:pwg@grazianolawgroup.com">pwg@grazianolawgroup.com</a>
@@ -20,26 +25,30 @@
   </div>
 </div>
 
-<header class="site-header">
+<header class="site-header" id="siteHeader">
   <div class="container nav-wrap">
-    <div class="brand">
+    <a href="index.html" class="brand">
       <span class="name">Graziano Law Group, PLLC</span>
       <span class="tagline">Attorney &amp; Counselor at Law</span>
-    </div>
-    <nav class="main-nav">
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="mainNav">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="practice-areas.html">Practice Areas</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+      <a href="contact.html" class="btn btn-primary btn-nav">Free Consultation</a>
     </nav>
   </div>
 </header>
 
-<section class="hero" style="padding:56px 0;">
+<section class="hero" style="padding:80px 0 90px;">
   <div class="container">
-    <div class="rule"></div>
+    <span class="hero-badge"><span class="dot"></span> In person or 100% virtual</span>
     <h1>About the Firm</h1>
     <p class="lede">Direct, personal representation from an attorney who knows your case.</p>
   </div>
@@ -48,8 +57,8 @@
 <section>
   <div class="container attorney-wrap">
     <div>
-            <img src="philip-graziano.jpg" alt="Philip W. Graziano, Esq." class="attorney-photo" style="object-fit:cover;">
-<ul class="credentials">
+      <img src="philip-graziano.jpg" alt="Philip W. Graziano, Esq." class="attorney-photo">
+      <ul class="credentials">
         <li><span class="k">Name</span><span class="v">Philip W. Graziano, Esq.</span></li>
         <li><span class="k">Firm</span><span class="v">Graziano Law Group, PLLC</span></li>
         <li><span class="k">Office</span><span class="v">Pembroke Pines, FL</span></li>
@@ -58,17 +67,18 @@
       </ul>
     </div>
     <div>
-      <span class="eyebrow" style="text-transform:uppercase;letter-spacing:2px;font-size:0.78rem;color:var(--gold);font-weight:700;display:block;margin-bottom:10px;">Attorney Profile</span>
+      <span class="eyebrow">Attorney Profile</span>
       <h2>Philip W. Graziano, Esq.</h2>
       <p>Philip W. Graziano is the founder and principal attorney of Graziano Law Group, PLLC, based in Pembroke Pines, Florida. He represents individuals and families across South Florida in Estate Planning, Family Law, Real Estate, and Traffic Ticket matters.</p>
       <p>Mr. Graziano built his practice around a simple idea: clients deserve direct access to the attorney handling their case, clear explanations of their options, and honest advice at every step — not a revolving door of staff and unreturned calls.</p>
       <p>He works closely with each client to understand their goals, whether that means drafting an estate plan that protects a family's future, guiding someone through a difficult family law matter, closing a real estate transaction smoothly, or defending against a traffic citation that could affect a driving record or insurance rates.</p>
+      <p>To make representation as convenient as possible, the firm offers full virtual services — video consultations, secure electronic document signing, and ongoing phone and email access — so clients anywhere in Florida can work with the firm without visiting the office.</p>
 
       <div class="note-box">
         <strong>Note:</strong> Add specific bar admission details, law school, year admitted to practice, and any additional certifications, awards, or professional affiliations here to complete the attorney profile.
       </div>
 
-      <a href="contact.html" class="btn btn-gold" style="margin-top:26px;">Schedule a Consultation</a>
+      <a href="contact.html" class="btn btn-primary" style="margin-top:26px;">Schedule a Consultation</a>
     </div>
   </div>
 </section>
@@ -81,16 +91,25 @@
     </div>
     <div class="grid-3">
       <div class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
         <h3>Direct Access</h3>
         <p>You work with Attorney Graziano directly throughout your matter — not passed between staff.</p>
       </div>
       <div class="card">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
         <h3>Clear Communication</h3>
         <p>Plain-language explanations of your options, the process, and what to expect at every stage.</p>
       </div>
       <div class="card">
-        <h3>Practical Guidance</h3>
-        <p>Advice focused on your real-world goals and budget, not unnecessary complexity.</p>
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <h3>Available Virtually</h3>
+        <p>Full video consultations and e-signing so you can get help from anywhere in Florida.</p>
       </div>
     </div>
   </div>
@@ -99,8 +118,10 @@
 <div class="cta-band">
   <div class="container">
     <h2>Let's Discuss Your Situation</h2>
-    <p>Every matter is different. Reach out to talk about yours.</p>
-    <a href="contact.html" class="btn btn-gold">Contact the Firm</a>
+    <p>Every matter is different. Reach out to talk about yours — in person or by video call.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn-primary">Contact the Firm</a>
+    </div>
   </div>
 </div>
 
@@ -109,8 +130,8 @@
     <div class="footer-grid">
       <div>
         <h4>Graziano Law Group, PLLC</h4>
-        <p style="color:#aeb6cc;">15800 Pines Blvd., Suite 3081<br>Pembroke Pines, FL 33027</p>
-        <p style="color:#aeb6cc;">Tel: <a href="tel:+19544406608">(954) 440-6608</a><br>Email: <a href="mailto:pwg@grazianolawgroup.com">pwg@grazianolawgroup.com</a></p>
+        <p style="color:#a9bcd9;">15800 Pines Blvd., Suite 3081<br>Pembroke Pines, FL 33027</p>
+        <p style="color:#a9bcd9;">Tel: <a href="tel:+19544406608">(954) 440-6608</a><br>Email: <a href="mailto:pwg@grazianolawgroup.com">pwg@grazianolawgroup.com</a></p>
       </div>
       <div>
         <h4>Navigate</h4>
@@ -133,11 +154,12 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 Graziano Law Group, PLLC. All rights reserved.</span>
-      <span>Pembroke Pines, FL</span>
+      <span>Pembroke Pines, FL &middot; Serving clients in person and virtually throughout Florida</span>
     </div>
     <p class="disclaimer">The information on this website is for general informational purposes only and does not constitute legal advice. Prior results do not guarantee a similar outcome. Contacting Graziano Law Group, PLLC through this website does not create an attorney-client relationship.</p>
   </div>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>

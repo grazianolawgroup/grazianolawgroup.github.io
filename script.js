@@ -28,12 +28,19 @@ document.addEventListener('DOMContentLoaded', function () {
     toggle.setAttribute('aria-expanded', 'true');
     document.body.classList.add('nav-open-body');
     if (scrim) scrim.classList.add('open');
-    var firstLink = nav.querySelector('a');
-    if (firstLink) firstLink.focus();
+    window.requestAnimationFrame(function () {
+      var firstLink = nav.querySelector('a');
+      if (firstLink) firstLink.focus();
+    });
   }
 
   if (toggle && nav) {
-    toggle.addEventListener('click', function () {
+    var lastToggleAt = 0;
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var now = Date.now();
+      if (now - lastToggleAt < 150) return;
+      lastToggleAt = now;
       var isOpen = nav.classList.contains('open');
       if (isOpen) { closeNav(false); } else { openNav(); }
     });

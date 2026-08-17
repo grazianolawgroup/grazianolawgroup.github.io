@@ -222,6 +222,9 @@ document.addEventListener('DOMContentLoaded', function () {
           }
           if (response.ok) {
             form.reset();
+            if (typeof gtag === 'function') {
+              gtag('event', 'generate_lead', { event_category: 'engagement', event_label: 'contact_form' });
+            }
             showBanner('success', 'Thank you — your message has been sent. Attorney Graziano will follow up with you directly.');
           } else {
             showBanner('error', 'Something went wrong sending your message. Please email us directly at pwg@grazianolawgroup.com or call (954) 440-6608.');
@@ -250,4 +253,20 @@ document.addEventListener('DOMContentLoaded', function () {
       window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     });
   }
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof gtag !== 'function') return;
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href^="tel:"]');
+    if (link) {
+      gtag('event', 'phone_click', { event_category: 'engagement', event_label: link.getAttribute('href').replace('tel:', '') });
+      return;
+    }
+    var mail = e.target.closest('a[href^="mailto:"]');
+    if (mail) {
+      gtag('event', 'email_click', { event_category: 'engagement', event_label: mail.getAttribute('href').replace('mailto:', '') });
+    }
+  });
 });

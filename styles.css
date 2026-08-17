@@ -937,7 +937,7 @@ form.inquiry label {
 }
 form.inquiry label .req { color: var(--danger); font-weight: 800; }
 form.inquiry label .opt {
-  color: var(--gray-light);
+  color: var(--gray);
   text-transform: none;
   font-weight: 500;
   letter-spacing: 0;

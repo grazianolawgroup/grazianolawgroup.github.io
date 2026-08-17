@@ -102,6 +102,7 @@ a {
   color: var(--blue);
   text-decoration: none;
   transition: color var(--dur-fast) var(--ease);
+  overflow-wrap: anywhere;
 }
 a:hover { color: var(--green-dark); }
 

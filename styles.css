@@ -729,4 +729,19 @@ footer.site-footer {
   .hero-actions, .cta-actions { flex-direction: column; align-items: stretch; }
   .hero-actions .btn, .cta-actions .btn { width: 100%; text-align: center; }
   .topbar .container { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .topbar .container > div:last-child { display: flex; flex-wrap: wrap; align-items: center; row-gap: 4px; }
+
+  .nav-wrap { padding: 12px 0; gap: 10px; }
+  .brand { gap: 10px; }
+  .brand-logo { width: 38px; height: 38px; }
+  .brand .name {
+    font-size: clamp(0.95rem, 4.3vw, 1.05rem);
+    line-height: 1.2;
+  }
+  .brand .tagline {
+    font-size: 0.62rem;
+    letter-spacing: 0.8px;
+    margin-top: 1px;
+  }
+  .nav-toggle { width: 38px; height: 38px; }
 }

@@ -187,9 +187,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     form.addEventListener('submit', function (e) {
+      e.preventDefault();
       hideBanner();
       if (!form.checkValidity()) {
-        e.preventDefault();
         var firstInvalid = null;
         fields.forEach(function (field) {
           var invalid = !field.checkValidity();
@@ -205,13 +205,35 @@ document.addEventListener('DOMContentLoaded', function () {
         submitBtn.classList.add('is-loading');
         submitBtn.setAttribute('aria-busy', 'true');
       }
-      window.setTimeout(function () {
-        if (submitBtn) {
-          submitBtn.classList.remove('is-loading');
-          submitBtn.removeAttribute('aria-busy');
-        }
-        showBanner('success', 'Your email app should be opening now with your message pre-filled. If nothing happens, email us directly at pwg@grazianolawgroup.com.');
-      }, 500);
+
+      var payload = {};
+      new FormData(form).forEach(function (value, key) { payload[key] = value; });
+      var ajaxUrl = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
+      fetch(ajaxUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (response) {
+          if (submitBtn) {
+            submitBtn.classList.remove('is-loading');
+            submitBtn.removeAttribute('aria-busy');
+          }
+          if (response.ok) {
+            form.reset();
+            showBanner('success', 'Thank you — your message has been sent. Attorney Graziano will follow up with you directly.');
+          } else {
+            showBanner('error', 'Something went wrong sending your message. Please email us directly at pwg@grazianolawgroup.com or call (954) 440-6608.');
+          }
+        })
+        .catch(function () {
+          if (submitBtn) {
+            submitBtn.classList.remove('is-loading');
+            submitBtn.removeAttribute('aria-busy');
+          }
+          showBanner('error', 'Something went wrong sending your message. Please email us directly at pwg@grazianolawgroup.com or call (954) 440-6608.');
+        });
     });
   }
 

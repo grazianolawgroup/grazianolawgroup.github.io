@@ -728,6 +728,7 @@ footer.site-footer {
   .container { padding: 0 20px; }
   .hero-actions, .cta-actions { flex-direction: column; align-items: stretch; }
   .hero-actions .btn, .cta-actions .btn { width: 100%; text-align: center; }
+  .topbar { font-size: 0.7rem; }
   .topbar .container { flex-direction: column; align-items: flex-start; gap: 8px; }
   .topbar .container > div:last-child { display: flex; flex-wrap: wrap; align-items: center; row-gap: 4px; }
 

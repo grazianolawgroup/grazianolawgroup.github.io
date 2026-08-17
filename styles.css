@@ -126,7 +126,13 @@ header.site-header.scrolled {
   gap: 14px;
   position: relative;
 }
-.brand { display: flex; flex-direction: column; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+.brand-text { display: flex; flex-direction: column; }
 .brand .name {
   font-family: var(--heading);
   font-size: 1.35rem;

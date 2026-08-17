@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | Graziano Law Group, PLLC</title>
 <meta name="description" content="Meet Philip W. Graziano, Esq., attorney and founder of Graziano Law Group, PLLC in Pembroke Pines, Florida — offering in-person and virtual representation.">
+<meta name="theme-color" content="#0d4b93">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
@@ -26,22 +27,24 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <header class="site-header" id="siteHeader">
   <div class="container nav-wrap">
     <a href="index.html" class="brand">
-      <img src="logo-mark.png" alt="Graziano Law Group logo" class="brand-logo">
+      <img src="logo-mark.png" alt="Graziano Law Group logo" class="brand-logo" width="42" height="42">
       <span class="brand-text">
         <span class="name">Graziano Law Group, PLLC</span>
         <span class="tagline">Attorney &amp; Counselor at Law</span>
       </span>
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
-    <nav class="main-nav" id="mainNav">
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="about.html" class="active" aria-current="page">About</a></li>
         <li><a href="practice-areas.html">Practice Areas</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -49,23 +52,26 @@
     </nav>
   </div>
 </header>
+<div class="nav-scrim" id="navScrim" hidden></div>
 
 <div class="topbar">
   <div class="container">
     <div>15800 Pines Blvd., Suite 3081, Pembroke Pines, FL 33027</div>
-    <div>
+    <div class="contact-line">
       <span class="virtual-pill">&#127909; Virtual Consultations Available</span>
-      <span class="sep">|</span>
+      <span class="sep" aria-hidden="true">|</span>
       <a href="tel:+19544406608">(954) 440-6608</a>
-      <span class="sep">|</span>
+      <span class="sep" aria-hidden="true">|</span>
       <a href="mailto:pwg@grazianolawgroup.com">pwg@grazianolawgroup.com</a>
     </div>
   </div>
 </div>
 
-<section class="hero" style="padding:80px 0 90px;">
+<main id="main-content">
+
+<section class="hero" style="padding:60px 0 70px;">
   <div class="container">
-    <span class="hero-badge"><span class="dot"></span> In person or 100% virtual</span>
+    <span class="hero-badge"><span class="dot" aria-hidden="true"></span> In person or 100% virtual</span>
     <h1>About the Firm</h1>
     <p class="lede">Direct, personal representation from an attorney who knows your case.</p>
   </div>
@@ -73,16 +79,16 @@
 
 <section>
   <div class="container attorney-wrap">
-    <div>
+    <div class="reveal">
       <ul class="credentials">
         <li><span class="k">Name</span><span class="v">Philip W. Graziano, Esq.</span></li>
         <li><span class="k">Firm</span><span class="v">Graziano Law Group, PLLC</span></li>
         <li><span class="k">Office</span><span class="v">Pembroke Pines, FL</span></li>
-        <li><span class="k">Phone</span><span class="v">(954) 440-6608</span></li>
-        <li><span class="k">Email</span><span class="v">pwg@grazianolawgroup.com</span></li>
+        <li><span class="k">Phone</span><span class="v"><a href="tel:+19544406608">(954) 440-6608</a></span></li>
+        <li><span class="k">Email</span><span class="v"><a href="mailto:pwg@grazianolawgroup.com">pwg@grazianolawgroup.com</a></span></li>
       </ul>
     </div>
-    <div>
+    <div class="reveal">
       <span class="eyebrow">Attorney Profile</span>
       <h2>Philip W. Graziano, Esq.</h2>
       <p>Philip W. Graziano is the founder and principal attorney of Graziano Law Group, PLLC, based in Pembroke Pines, Florida. He represents individuals and families across South Florida in Estate Planning, Family Law, Real Estate, and Traffic Ticket matters.</p>
@@ -101,27 +107,27 @@
 
 <section class="section-alt">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <span class="eyebrow">Our Approach</span>
       <h2>What Sets the Firm Apart</h2>
     </div>
-    <div class="grid-3">
-      <div class="card">
-        <div class="card-icon">
+    <div class="grid-3 reveal-group">
+      <div class="card reveal">
+        <div class="card-icon" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
         <h3>Direct Access</h3>
         <p>You work with Attorney Graziano directly throughout your matter — not passed between staff.</p>
       </div>
-      <div class="card">
-        <div class="card-icon">
+      <div class="card reveal">
+        <div class="card-icon" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
         <h3>Clear Communication</h3>
         <p>Plain-language explanations of your options, the process, and what to expect at every stage.</p>
       </div>
-      <div class="card">
-        <div class="card-icon">
+      <div class="card reveal">
+        <div class="card-icon" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
         </div>
         <h3>Available Virtually</h3>
@@ -140,6 +146,8 @@
     </div>
   </div>
 </div>
+
+</main>
 
 <footer class="site-footer">
   <div class="container">
@@ -175,6 +183,10 @@
     <p class="disclaimer">The information on this website is for general informational purposes only and does not constitute legal advice. Prior results do not guarantee a similar outcome. Contacting Graziano Law Group, PLLC through this website does not create an attorney-client relationship.</p>
   </div>
 </footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top" type="button">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
 
 <script src="script.js"></script>
 </body>

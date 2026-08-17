@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Practice Areas | Graziano Law Group, PLLC</title>
 <meta name="description" content="Graziano Law Group, PLLC handles Estate Planning, Family Law, Traffic Ticket defense, and Real Estate matters in Pembroke Pines, Florida — in person or virtually.">
+<meta name="theme-color" content="#0d4b93">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
@@ -26,57 +27,73 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <header class="site-header" id="siteHeader">
   <div class="container nav-wrap">
     <a href="index.html" class="brand">
-      <img src="logo-mark.png" alt="Graziano Law Group logo" class="brand-logo">
+      <img src="logo-mark.png" alt="Graziano Law Group logo" class="brand-logo" width="42" height="42">
       <span class="brand-text">
         <span class="name">Graziano Law Group, PLLC</span>
         <span class="tagline">Attorney &amp; Counselor at Law</span>
       </span>
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
-    <nav class="main-nav" id="mainNav">
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="practice-areas.html" class="active">Practice Areas</a></li>
+        <li><a href="practice-areas.html" class="active" aria-current="page">Practice Areas</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <a href="contact.html" class="btn btn-primary btn-nav">Free Consultation</a>
     </nav>
   </div>
 </header>
+<div class="nav-scrim" id="navScrim" hidden></div>
 
 <div class="topbar">
   <div class="container">
     <div>15800 Pines Blvd., Suite 3081, Pembroke Pines, FL 33027</div>
-    <div>
+    <div class="contact-line">
       <span class="virtual-pill">&#127909; Virtual Consultations Available</span>
-      <span class="sep">|</span>
+      <span class="sep" aria-hidden="true">|</span>
       <a href="tel:+19544406608">(954) 440-6608</a>
-      <span class="sep">|</span>
+      <span class="sep" aria-hidden="true">|</span>
       <a href="mailto:pwg@grazianolawgroup.com">pwg@grazianolawgroup.com</a>
     </div>
   </div>
 </div>
 
-<section class="hero" style="padding:80px 0 90px;">
+<main id="main-content">
+
+<section class="hero" style="padding:60px 0 70px;">
   <div class="container">
-    <span class="hero-badge"><span class="dot"></span> Every practice area available virtually</span>
+    <span class="hero-badge"><span class="dot" aria-hidden="true"></span> Every practice area available virtually</span>
     <h1>Practice Areas</h1>
     <p class="lede">Focused representation in the matters that affect individuals, families, and property owners most — handled in our office or over video, your choice.</p>
   </div>
 </section>
 
+<nav class="quick-nav" aria-label="Jump to practice area">
+  <div class="container">
+    <div class="quick-nav-list">
+      <a href="#estate-planning">Estate Planning</a>
+      <a href="#family-law">Family Law</a>
+      <a href="#traffic-tickets">Traffic Tickets</a>
+      <a href="#real-estate">Real Estate</a>
+    </div>
+  </div>
+</nav>
+
 <section>
   <div class="container">
 
-    <div class="practice-block" id="estate-planning">
+    <div class="practice-block reveal" id="estate-planning">
       <div class="label-col">
-        <div class="icon-badge">
+        <div class="icon-badge" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6"/><path d="M9 11h2"/></svg>
         </div>
         <span class="virtual-tag">&#127909; Available Virtually</span>
@@ -95,9 +112,9 @@
       </div>
     </div>
 
-    <div class="practice-block" id="family-law">
+    <div class="practice-block reveal" id="family-law">
       <div class="label-col">
-        <div class="icon-badge">
+        <div class="icon-badge" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <span class="virtual-tag">&#127909; Available Virtually</span>
@@ -116,9 +133,9 @@
       </div>
     </div>
 
-    <div class="practice-block" id="traffic-tickets">
+    <div class="practice-block reveal" id="traffic-tickets">
       <div class="label-col">
-        <div class="icon-badge">
+        <div class="icon-badge" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1.5-6.5A2 2 0 0 1 9.4 9h5.2a2 2 0 0 1 1.9 1.5L18 17"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
         </div>
         <span class="virtual-tag">&#127909; Available Virtually</span>
@@ -136,9 +153,9 @@
       </div>
     </div>
 
-    <div class="practice-block" id="real-estate">
+    <div class="practice-block reveal" id="real-estate">
       <div class="label-col">
-        <div class="icon-badge">
+        <div class="icon-badge" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
         </div>
         <span class="virtual-tag">&#127909; Available Virtually</span>
@@ -161,7 +178,7 @@
 
 <section class="section-alt">
   <div class="container">
-    <div class="virtual-section">
+    <div class="virtual-section reveal">
       <div class="container-inner">
         <span class="eyebrow green" style="background:rgba(125,212,80,0.18); color:#eafbe0;">Virtual Services</span>
         <h2 style="color:#fff; max-width:640px;">Not local to Pembroke Pines? No problem.</h2>
@@ -180,6 +197,8 @@
     </div>
   </div>
 </div>
+
+</main>
 
 <footer class="site-footer">
   <div class="container">
@@ -215,6 +234,10 @@
     <p class="disclaimer">The information on this website is for general informational purposes only and does not constitute legal advice. Prior results do not guarantee a similar outcome. Contacting Graziano Law Group, PLLC through this website does not create an attorney-client relationship.</p>
   </div>
 </footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top" type="button">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
 
 <script src="script.js"></script>
 </body>

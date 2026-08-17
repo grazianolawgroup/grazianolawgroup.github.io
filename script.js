@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var toggle = document.getElementById('navToggle');
   var nav = document.getElementById('mainNav');
   var scrim = document.getElementById('navScrim');
+  var collapseTimer = null;
 
   function closeNav(returnFocus) {
     if (!nav || !toggle) return;
@@ -18,11 +19,18 @@ document.addEventListener('DOMContentLoaded', function () {
     toggle.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('nav-open-body');
     if (scrim) scrim.classList.remove('open');
+    window.clearTimeout(collapseTimer);
+    collapseTimer = window.setTimeout(function () {
+      if (!nav.classList.contains('open')) nav.classList.add('nav-collapsed');
+    }, 380);
     if (returnFocus) toggle.focus();
   }
 
   function openNav() {
     if (!nav || !toggle) return;
+    window.clearTimeout(collapseTimer);
+    nav.classList.remove('nav-collapsed');
+    void nav.offsetWidth; /* force reflow so the slide-in transition starts from the off-screen position */
     nav.classList.add('open');
     toggle.classList.add('active');
     toggle.setAttribute('aria-expanded', 'true');

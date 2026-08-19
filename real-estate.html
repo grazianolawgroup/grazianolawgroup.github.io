@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9YXSZH0E0T"></script>
+<!-- Google tag (gtag.js) - deferred until interaction/idle for performance -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-9YXSZH0E0T');
+
+  (function(){
+    var loaded = false;
+    var events = ['scroll','keydown','mousemove','touchstart','click'];
+    function loadGtag(){
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-9YXSZH0E0T';
+      document.head.appendChild(s);
+      events.forEach(function(evt){ window.removeEventListener(evt, loadGtag); });
+      document.removeEventListener('visibilitychange', onVisChange);
+    }
+    events.forEach(function(evt){ window.addEventListener(evt, loadGtag, {passive:true, once:true}); });
+    function onVisChange(){ if (document.visibilityState === 'hidden') loadGtag(); }
+    document.addEventListener('visibilitychange', onVisChange);
+    setTimeout(loadGtag, 3000);
+  })();
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +49,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=optional" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=optional">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=optional" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=optional"></noscript>
 <link rel="stylesheet" href="styles.css?v=3">
 <script type="application/ld+json">
 {
@@ -274,12 +293,12 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <h4>Graziano Law Group, PLLC</h4>
+        <h3>Graziano Law Group, PLLC</h3>
         <p style="color:#a9bcd9;">15800 Pines Blvd., Suite 3081<br>Pembroke Pines, FL 33027</p>
         <p style="color:#a9bcd9;">Tel: <a href="tel:+19544406608">(954) 440-6608</a><br>Email: <a href="mailto:pwg@grazianolawgroup.com">pwg@grazianolawgroup.com</a></p>
       </div>
       <div>
-        <h4>Navigate</h4>
+        <h3>Navigate</h3>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
@@ -289,7 +308,7 @@
         </ul>
       </div>
       <div>
-        <h4>Practice Areas</h4>
+        <h3>Practice Areas</h3>
         <ul>
           <li><a href="estate-planning.html">Estate Planning</a></li>
           <li><a href="family-law.html">Family Law</a></li>

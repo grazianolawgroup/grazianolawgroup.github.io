@@ -313,6 +313,12 @@ header.site-header.scrolled {
   text-overflow: ellipsis;
 }
 
+/* Header nav gets a bit more breathing room than the rest of the site's
+   1160px container, since it now carries 6 nav items plus the CTA button. */
+@media (min-width: 860px) {
+  header.site-header .container { max-width: 1260px; }
+}
+
 nav.main-nav {
   position: fixed;
   top: 0;
@@ -403,7 +409,7 @@ nav.main-nav .btn-nav { margin-top: 10px; text-align: center; }
 .nav-toggle.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
 @media (min-width: 860px) {
-  .nav-wrap { padding: 16px 0; gap: 14px; }
+  .nav-wrap { padding: 16px 0; gap: 12px; }
   .brand { gap: 12px; }
   .brand-logo { width: 42px; height: 42px; }
   .brand .name { font-size: 1.35rem; }
@@ -420,7 +426,7 @@ nav.main-nav .btn-nav { margin-top: 10px; text-align: center; }
     align-items: center;
     justify-content: flex-end;
     padding: 0;
-    gap: 28px;
+    gap: 20px;
     box-shadow: none;
     transform: none;
     transition: none;
@@ -428,14 +434,16 @@ nav.main-nav .btn-nav { margin-top: 10px; text-align: center; }
   }
   nav.main-nav ul {
     flex-direction: row;
-    gap: 6px;
+    gap: 2px;
     margin: 0;
   }
   nav.main-nav ul a {
-    padding: 9px 16px;
+    padding: 9px 13px;
     border-radius: 30px;
     min-height: 0;
     width: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   nav.main-nav .btn-nav { margin-top: 0; }
 }
@@ -490,6 +498,8 @@ nav.main-nav .btn-nav { margin-top: 10px; text-align: center; }
   padding: 12px 22px;
   min-height: 44px;
   font-size: 0.88rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .btn-block { width: 100%; text-align: center; }
 

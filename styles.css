@@ -1201,6 +1201,48 @@ footer.site-footer {
   .js .reveal { opacity: 1 !important; transform: none !important; }
 }
 
+/* ---------- Sticky mobile call/text bar ---------- */
+.sticky-cta-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 95;
+  display: flex;
+  gap: 10px;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -6px 24px rgba(8, 47, 94, 0.14);
+  padding: 10px var(--container-pad);
+  padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+}
+.sticky-cta-bar a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 46px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  font-family: var(--heading);
+}
+.sticky-cta-bar .sticky-call {
+  background: var(--gradient-green);
+  color: var(--blue-dark);
+  box-shadow: 0 6px 16px rgba(125, 212, 80, 0.35);
+}
+.sticky-cta-bar .sticky-text {
+  background: var(--blue);
+  color: #fff;
+}
+@media (min-width: 860px) {
+  .sticky-cta-bar { display: none; }
+}
+@media (max-width: 859.98px) {
+  body { padding-bottom: 74px; }
+  .back-to-top { bottom: 84px; }
+}
+
 /* ---------- Small-screen fine tuning ---------- */
 @media (max-width: 639px) {
   .container { padding: 0 var(--container-pad); }

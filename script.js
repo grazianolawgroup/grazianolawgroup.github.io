@@ -264,6 +264,11 @@ document.addEventListener('DOMContentLoaded', function () {
       gtag('event', 'phone_click', { event_category: 'engagement', event_label: link.getAttribute('href').replace('tel:', '') });
       return;
     }
+    var sms = e.target.closest('a[href^="sms:"]');
+    if (sms) {
+      gtag('event', 'text_click', { event_category: 'engagement', event_label: sms.getAttribute('href').replace('sms:', '') });
+      return;
+    }
     var mail = e.target.closest('a[href^="mailto:"]');
     if (mail) {
       gtag('event', 'email_click', { event_category: 'engagement', event_label: mail.getAttribute('href').replace('mailto:', '') });

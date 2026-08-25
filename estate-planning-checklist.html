@@ -319,6 +319,16 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
     var payload = {};
     new FormData(form).forEach(function (value, key) { payload[key] = value; });
     var ajaxUrl = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+    try {
+  var brevoBody = new URLSearchParams();
+      brevoBody.set('EMAIL', payload.email || '');
+      brevoBody.set('FIRSTNAME', payload.name || '');
+      brevoBody.set('email_address_check', '');
+      brevoBody.set('locale', 'en');
+      brevoBody.set('html_type', 'simple');
+      fetch('https://acbd61cb.sibforms.com/serve/MUIFAAtjktJn9tCanTxflVQhnjbElbwRTtWOJ649ufdS2QnNjbyjcOAFpvEmEroWXcWwIRPsEO-Us_Grvu-BIQsBGk4aEIhvdQq1zT2XEshGiDnUKvDLwTesOQPpVVU1AiyAhKFPhQLMwpp_GOTnzrMwmvAyoBsR-gzVwy_vgqSQkw5rofo0GgMGBDnu46Z3evyniV6pgjMzvortzg==', { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: brevoBody.toString() }).catch(function () {});
+    } catch (e) {}
+    
 
     fetch(ajaxUrl, {
       method: 'POST',

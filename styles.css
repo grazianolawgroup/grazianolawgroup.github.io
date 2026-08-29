@@ -1211,7 +1211,7 @@ footer.site-footer {
   background: #fff;
   border-top: 1px solid var(--border);
   box-shadow: 0 -6px 24px rgba(8, 47, 94, 0.14);
-  padding: 10px var(--container-pad);
+  padding: 10px calc(var(--container-pad) + 70px) 10px var(--container-pad);
   padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
 }
 .sticky-cta-bar a {

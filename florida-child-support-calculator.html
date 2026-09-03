@@ -30,7 +30,7 @@ setTimeout(loadGtag, 3000);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Florida Child Support Calculator | Guidelines Estimate</title>
-<meta name="description" content="Estimate Florida child support under the Fla. Stat. 61.30 guidelines schedule, including the substantial time-sharing adjustment for 20%+ overnights. For informational purposes only.">
+<meta name="description" content="Estimate Florida child support under the Fla. Stat. 61.30 guidelines schedule, following the line-by-line structure of the state's official Form 12.902(e) worksheet.">
 <meta name="theme-color" content="#0d4b93">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -39,12 +39,12 @@ setTimeout(loadGtag, 3000);
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://grazianolawgroup.com/florida-child-support-calculator.html">
 <meta property="og:title" content="Florida Child Support Calculator | Guidelines Estimate">
-<meta property="og:description" content="Estimate Florida child support under the Fla. Stat. 61.30 guidelines schedule, including the substantial time-sharing adjustment for 20%+ overnights. For informational purposes only.">
+<meta property="og:description" content="Estimate Florida child support under the Fla. Stat. 61.30 guidelines schedule, following the line-by-line structure of the state's official Form 12.902(e) worksheet.">
 <meta property="og:image" content="https://grazianolawgroup.com/og-image.jpg">
 <meta property="og:site_name" content="Graziano Law Group, PLLC">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Florida Child Support Calculator | Guidelines Estimate">
-<meta name="twitter:description" content="Estimate Florida child support under the Fla. Stat. 61.30 guidelines schedule, including the substantial time-sharing adjustment for 20%+ overnights. For informational purposes only.">
+<meta name="twitter:description" content="Estimate Florida child support under the Fla. Stat. 61.30 guidelines schedule, following the line-by-line structure of the state's official Form 12.902(e) worksheet.">
 <meta name="twitter:image" content="https://grazianolawgroup.com/og-image.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,7 +58,7 @@ setTimeout(loadGtag, 3000);
 "@context": "https://schema.org",
 "@type": "WebPage",
 "name": "Florida Child Support Calculator",
-"description": "Estimate Florida child support under the Fla. Stat. 61.30 guidelines schedule, including the substantial time-sharing adjustment for 20%+ overnights.",
+"description": "Estimate Florida child support under the Fla. Stat. 61.30 guidelines schedule, following the line-by-line structure of the state's official Form 12.902(e) worksheet.",
 "url": "https://grazianolawgroup.com/florida-child-support-calculator.html",
 "publisher": {
 "@type": "Organization",
@@ -113,6 +113,14 @@ setTimeout(loadGtag, 3000);
 "acceptedAnswer": {
 "@type": "Answer",
 "text": "Yes. The guideline amount is presumptive, but a court may order an amount that varies by up to 5 percent without explanation, or more than 5 percent with a written finding that the guideline amount would be unjust or inappropriate."
+}
+},
+{
+"@type": "Question",
+"name": "Does this calculator match the official Florida child support worksheet?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes. The results below are labeled to match the numbered lines of Florida Family Law Rules of Procedure Form 12.902(e), Child Support Guidelines Worksheet, the form the Florida State Courts require in every case where child support is requested. This tool mirrors that form's math so you can see how each figure would appear on the worksheet actually filed with the court."
 }
 }
 ]
@@ -174,9 +182,11 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 .calc-section-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:18px;margin:28px 0 4px;color:#0d1b3d;}
 .calc-actions{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
 #calcResults{margin-top:28px;padding-top:24px;border-top:2px solid #e2e8f0;display:none;}
-.result-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed #e2e8f0;font-size:15px;}
+.result-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed #e2e8f0;font-size:15px;gap:12px;}
+.result-row .line-label{color:#0d4b93;font-weight:600;font-size:12.5px;margin-right:6px;white-space:nowrap;}
 .result-row.total{font-weight:700;font-size:18px;border-bottom:none;border-top:2px solid #0d1b3d;margin-top:8px;padding-top:14px;color:#0d1b3d;}
 .result-note{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px 16px;margin-top:16px;font-size:13.5px;color:#1e3a5f;line-height:1.55;}
+.worksheet-cite{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;margin-top:16px;font-size:13px;color:#334155;line-height:1.55;}
 .calc-disclaimer{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:14px 16px;margin-top:20px;font-size:13.5px;color:#7c2d12;line-height:1.55;}
 .btn-calc{background:#0d4b93;color:#fff;border:none;padding:13px 28px;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;}
 .btn-calc:hover{background:#0a3a73;}
@@ -246,7 +256,7 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 <div class="container">
 <span class="hero-badge"><span class="dot" aria-hidden="true"></span> Interactive Tool</span>
 <h1>Florida Child Support Calculator</h1>
-<p class="lede">Get a plain-English estimate of Florida's guideline child support amount under Fla. Stat. &sect; 61.30, including the substantial time-sharing adjustment when both parents have the child at least 20% of overnights.</p>
+<p class="lede">Get a plain-English estimate of Florida's guideline child support amount under Fla. Stat. &sect; 61.30. Results below are labeled to match the numbered lines of the state's official Form 12.902(e), Child Support Guidelines Worksheet, including the substantial time-sharing adjustment when both parents have the child at least 20% of overnights.</p>
 </div>
 </section>
 
@@ -255,7 +265,7 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 <div class="calc-wrap">
 <div class="calc-card">
 
-<div class="calc-section-title">Income</div>
+<div class="calc-section-title">Income (Worksheet Line 1)</div>
 <div class="calc-grid">
 <div class="calc-field">
 <label for="incomeA">Parent A monthly net income ($)</label>
@@ -269,7 +279,7 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 </div>
 </div>
 
-<div class="calc-section-title">Children and Add-On Costs</div>
+<div class="calc-section-title">Children and Add-On Costs (Worksheet Lines 5&ndash;7)</div>
 <div class="calc-grid">
 <div class="calc-field">
 <label for="numChildren">Number of children</label>
@@ -283,38 +293,41 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 </select>
 </div>
 <div class="calc-field">
-<label for="payer">Who pays child care &amp; health insurance directly?</label>
-<select id="payer">
-<option value="A">Parent A</option>
-<option value="B" selected>Parent B</option>
-<option value="none">Neither (no add-on costs)</option>
-</select>
-</div>
-<div class="calc-field">
 <label for="childCare">Monthly child care costs ($)</label>
 <input type="number" id="childCare" min="0" step="1" value="0" inputmode="decimal">
-<span class="hint">Work-, job search-, or education-related child care only.</span>
+<span class="hint">Work-, job search-, or education-related child care only (Line 5a).</span>
 </div>
 <div class="calc-field">
-<label for="healthIns">Monthly child's health insurance cost ($)</label>
+<label for="childCarePayer">Who actually pays child care directly?</label>
+<select id="childCarePayer">
+<option value="A">Parent A</option>
+<option value="B" selected>Parent B</option>
+<option value="none">Neither / not applicable</option>
+</select>
+<span class="hint">Matches Line 7a (or Line 16a for substantial time-sharing).</span>
+</div>
+<div class="calc-field">
+<label for="healthIns">Monthly child's health insurance &amp; medical costs ($)</label>
 <input type="number" id="healthIns" min="0" step="1" value="0" inputmode="decimal">
-<span class="hint">The portion of the premium attributable to the child.</span>
+<span class="hint">The child's share of the premium, plus any noncovered medical, dental, or prescription costs (Lines 5b + 5c).</span>
+</div>
+<div class="calc-field">
+<label for="healthMedPayer">Who actually pays health insurance/medical directly?</label>
+<select id="healthMedPayer">
+<option value="A">Parent A</option>
+<option value="B" selected>Parent B</option>
+<option value="none">Neither / not applicable</option>
+</select>
+<span class="hint">Matches Lines 7b/7c (or 16b/16c for substantial time-sharing).</span>
 </div>
 </div>
 
-<div class="calc-section-title">Time-Sharing</div>
+<div class="calc-section-title">Time-Sharing (Worksheet Line 12)</div>
 <div class="calc-grid">
 <div class="calc-field">
 <label for="overnightsA">Overnights per year with Parent A</label>
 <input type="number" id="overnightsA" min="0" max="365" step="1" value="183" inputmode="numeric">
 <span class="hint">Parent B is assumed to have the remaining nights (365 total).</span>
-</div>
-<div class="calc-field">
-<label for="obligorSelect">If time-sharing is not substantial, who pays?</label>
-<select id="obligorSelect">
-<option value="auto" selected>Automatic (parent with fewer overnights)</option>
-</select>
-<span class="hint">Applies only when one parent has under 20% of overnights (about 73 nights).</span>
 </div>
 </div>
 
@@ -325,7 +338,9 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 
 <div id="calcResults"></div>
 
-<div class="calc-disclaimer">This calculator provides a general estimate for informational purposes only and is not legal advice. It does not account for imputed income, low-income obligor caps, deviation factors, or every nuance of Fla. Stat. &sect; 61.30. Actual child support amounts are determined by a court or through the Department of Revenue based on verified income and documentation. Consult Attorney Graziano for guidance specific to your situation.</div>
+<div class="worksheet-cite">This calculator's line numbers and math follow <strong>Florida Family Law Rules of Procedure Form 12.902(e), Child Support Guidelines Worksheet</strong>, the form the Florida State Courts require you to file in any case where child support is requested. See the official form and instructions at <a href="https://www.flcourts.gov/Services/family-courts/domestic-relations-court-resources/family-law-forms/Additional-Supporting-Documents-12.902-Forms-B-J/child-support-guidelines-worksheet" target="_blank" rel="noopener">flcourts.gov</a>.</div>
+
+<div class="calc-disclaimer">This calculator provides a general estimate for informational purposes only and is not legal advice. It does not account for imputed income, low-income obligor caps, deviation factors, or every nuance of Fla. Stat. &sect; 61.30. Actual child support amounts are determined by a court or through the Department of Revenue based on verified income and documentation, using the official Form 12.902(e) worksheet filed in your case. Consult Attorney Graziano for guidance specific to your situation.</div>
 
 </div>
 </div>
@@ -336,12 +351,12 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 <div class="container">
 <div class="article-body" style="max-width:760px; margin:40px auto 0;">
 <h2>How This Calculator Works</h2>
-<p>Florida uses an income shares model under Fla. Stat. &sect; 61.30. Each parent's net monthly income is added together, and the combined figure is run against the state's guidelines schedule to find the minimum child support need for the number of children involved. Each parent then owes a share of that amount proportional to their share of the combined income. Reasonable child care and health insurance costs for the child are added to the base obligation before it's divided.</p>
-<p>When a court-ordered or agreed time-sharing arrangement gives each parent at least 20% of the overnights in a year (about 73 nights), Florida applies a different formula under &sect; 61.30(11)(b): each parent's support obligation is increased by 50%, then multiplied by the percentage of overnights the other parent has. The difference between the two resulting figures is the amount that changes hands, adjusted for who actually pays child care and health insurance costs.</p>
+<p>Florida uses an income shares model under Fla. Stat. &sect; 61.30, and every case where child support is requested requires the parties to complete <strong>Florida Family Law Rules of Procedure Form 12.902(e), Child Support Guidelines Worksheet</strong>. This calculator follows that form's line numbers so the estimate below mirrors what would appear on the worksheet actually filed with the court. Each parent's net monthly income (Line 1) is added together and run against the state's guidelines schedule to find the Basic Monthly Obligation (Line 2) for the number of children involved. Each parent's Percent of Financial Responsibility (Line 3) and Share of Basic Monthly Obligation (Line 4) follow from their share of the combined income. Reasonable child care and health insurance costs for the child (Lines 5&ndash;6) are added, and credit is given for whatever either parent already pays directly (Lines 7&ndash;8), before arriving at the Minimum Child Support Obligation for Each Parent (Line 9).</p>
+<p>When a court-ordered or agreed time-sharing arrangement gives each parent at least 20% of the overnights in a year (about 73 nights), Florida applies the Substantial Time-Sharing Gross-Up Method under &sect; 61.30(11)(b) and Lines 10&ndash;21 of the worksheet: each parent's Basic Monthly Obligation is increased by 150% (Line 10), allocated by income share (Line 11), then multiplied by the percentage of overnights the <em>other</em> parent has (Lines 12&ndash;13). Add-on costs and actual payments are layered in the same way (Lines 14&ndash;18) before the worksheet nets the two parents' figures against each other to reach the Presumptive Child Support to Be Paid (Line 21).</p>
 <p>For combined net income above $10,000 a month, the calculator adds a percentage of the amount over $10,000 to the guideline minimum, using the percentages set out in &sect; 61.30(6)(b). Combined net income between the schedule's data points is estimated using linear interpolation between the two nearest guideline figures.</p>
 
 <h2>What This Tool Doesn't Do</h2>
-<p>This calculator can't account for every variable a court considers. It doesn't impute income for a voluntarily unemployed or underemployed parent, apply the low-income obligor cap tied to federal poverty guidelines, or weigh deviation factors like extraordinary medical expenses, a parenting plan quirk, or a parent's other financial obligations. A judge can order an amount that varies from the guideline figure by up to 5% without explanation, or more with a written finding. Treat the result as a starting point for a conversation with an attorney, not a final number.</p>
+<p>This calculator can't account for every variable a court considers, and it isn't a substitute for the actual Form 12.902(e) worksheet that must be filed with the court along with a Financial Affidavit. It doesn't impute income for a voluntarily unemployed or underemployed parent, apply the low-income obligor cap tied to federal poverty guidelines, or weigh deviation factors like extraordinary medical expenses, a parenting plan quirk, or a parent's other financial obligations. A judge can order an amount that varies from the guideline figure by up to 5% without explanation, or more with a written finding. Treat the result as a starting point for a conversation with an attorney, not a final number.</p>
 </div>
 </div>
 </section>
@@ -357,12 +372,16 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 <p>This tool applies the Fla. Stat. 61.30 guidelines schedule and the substantial time-sharing formula to the numbers you enter, but it is an estimate only. Courts can deviate from the guideline amount, income and deductions must be verified with documentation, and factors like imputed income, extraordinary expenses, or low-income obligor rules can change the actual result.</p>
 </details>
 <details>
+<summary><strong>Does this calculator match the official Florida child support worksheet?</strong></summary>
+<p>Yes. The results are labeled to match the numbered lines of Florida Family Law Rules of Procedure Form 12.902(e), Child Support Guidelines Worksheet, the form the Florida State Courts require in every case where child support is requested. This tool mirrors that form's math so you can see how each figure would appear on the worksheet actually filed with the court.</p>
+</details>
+<details>
 <summary><strong>What counts as substantial time-sharing in this calculator?</strong></summary>
-<p>Under Fla. Stat. 61.30(11)(b), substantial time-sharing means each parent has the child at least 20 percent of overnights in the year (about 73 nights). When both parents meet that threshold, the calculator applies the statute's gross-up formula instead of the standard percentage-share calculation.</p>
+<p>Under Fla. Stat. 61.30(11)(b), substantial time-sharing means each parent has the child at least 20 percent of overnights in the year (about 73 nights). When both parents meet that threshold, the calculator applies the statute's gross-up formula found on Lines 10 through 21 of Form 12.902(e), instead of the standard percentage-share calculation on Lines 1 through 9.</p>
 </details>
 <details>
 <summary><strong>What income should I enter?</strong></summary>
-<p>Enter each parent's net monthly income after allowable deductions such as income tax, FICA, mandatory union dues and retirement contributions, health insurance premiums (excluding the child's portion), and court-ordered support actually paid for other children, as defined in Fla. Stat. 61.30(3).</p>
+<p>Enter each parent's net monthly income after allowable deductions such as income tax, FICA, mandatory union dues and retirement contributions, health insurance premiums (excluding the child's portion), and court-ordered support actually paid for other children, as defined in Fla. Stat. 61.30(3). This is the same figure that goes on Line 1 of Form 12.902(e), taken from Line 27, Section I of the Financial Affidavit (Form 12.902(b) or (c)).</p>
 </details>
 <details>
 <summary><strong>Does this calculator account for income above $10,000 combined net income?</strong></summary>
@@ -380,7 +399,7 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 <div class="cta-band">
 <div class="container">
 <h2>Want Help Applying This to Your Case?</h2>
-<p>Numbers on a screen are a starting point. Attorney Graziano can review your income, time-sharing arrangement, and expenses to explain what a Florida court is likely to order. Schedule a consultation, in person or by video.</p>
+<p>Numbers on a screen are a starting point. Attorney Graziano can review your income, time-sharing arrangement, and expenses, and help you complete and file the actual Form 12.902(e) worksheet the court requires. Schedule a consultation, in person or by video.</p>
 <div class="cta-actions">
 <a href="contact.html" class="btn btn-primary">Get in Touch</a>
 <a href="florida-child-support-calculation-guide.html" class="btn btn-outline">Read the Full Guide</a>
@@ -488,6 +507,10 @@ n = Math.abs(Math.round(n));
 return sign + "$" + n.toLocaleString("en-US");
 }
 
+function line(num, label, value){
+return '<div class="result-row"><span><span class="line-label">Line ' + num + '</span>' + label + '</span><span>' + value + '</span></div>';
+}
+
 function calculate(){
 var incomeA = parseFloat(document.getElementById("incomeA").value) || 0;
 var incomeB = parseFloat(document.getElementById("incomeB").value) || 0;
@@ -498,7 +521,8 @@ var overnightsA = parseFloat(document.getElementById("overnightsA").value);
 if (isNaN(overnightsA)) overnightsA = 183;
 overnightsA = Math.max(0, Math.min(365, overnightsA));
 var overnightsB = 365 - overnightsA;
-var payer = document.getElementById("payer").value;
+var childCarePayer = document.getElementById("childCarePayer").value;
+var healthMedPayer = document.getElementById("healthMedPayer").value;
 
 var combined = incomeA + incomeB;
 var resultsEl = document.getElementById("calcResults");
@@ -519,60 +543,83 @@ var pctOvernightsA = overnightsA / 365;
 var pctOvernightsB = overnightsB / 365;
 var substantial = (pctOvernightsA >= 0.20 && pctOvernightsB >= 0.20);
 
+// Actual payments made, per parent, matching worksheet Lines 7 / 16.
+var paidA = 0, paidB = 0;
+if (childCarePayer === "A") paidA += childCare; else if (childCarePayer === "B") paidB += childCare;
+if (healthMedPayer === "A") paidA += healthIns; else if (healthMedPayer === "B") paidB += healthIns;
+
 var html = "";
-html += '<div class="result-row"><span>Combined net monthly income</span><span>' + fmt(combined) + '</span></div>';
-html += '<div class="result-row"><span>Guideline base support (' + numChildren + (numChildren == 1 ? ' child' : ' children') + ')</span><span>' + fmt(base) + '</span></div>';
-if (addOns > 0){
-html += '<div class="result-row"><span>Child care + health insurance add-ons</span><span>' + fmt(addOns) + '</span></div>';
-}
+html += line("1", "Present Net Monthly Income (Total)", fmt(combined));
+html += line("2", "Basic Monthly Obligation (" + numChildren + (numChildren === 1 ? " child" : " children") + ")", fmt(base));
+html += line("3", "Percent of Financial Responsibility", "A " + Math.round(shareA*100) + "% / B " + Math.round(shareB*100) + "%");
+html += line("4", "Share of Basic Monthly Obligation", "A " + fmt(dollarA) + " / B " + fmt(dollarB));
 
 var finalOwed, owedBy, owedTo;
 
 if (!substantial){
-// Standard calculation: the parent with fewer overnights is the obligor.
-var obligorIsA = overnightsA < overnightsB;
-var total = base + addOns;
-var obligorShare = obligorIsA ? shareA : shareB;
-var obligorAmount = total * obligorShare;
-if ((payer === "A" && obligorIsA) || (payer === "B" && !obligorIsA)){
-obligorAmount -= addOns;
+var line5d = addOns;
+if (line5d > 0){
+html += line("5d", "Total Monthly Child Care &amp; Health Costs", fmt(line5d));
 }
-finalOwed = Math.max(0, obligorAmount);
+var addOnShareA = line5d * shareA;
+var addOnShareB = line5d * shareB;
+if (line5d > 0){
+html += line("6", "Additional Support Payments", "A " + fmt(addOnShareA) + " / B " + fmt(addOnShareB));
+}
+if (paidA > 0 || paidB > 0){
+html += line("8", "Total Support Payments Actually Made", "A " + fmt(paidA) + " / B " + fmt(paidB));
+}
+var obligationA = Math.max(0, dollarA + addOnShareA - paidA);
+var obligationB = Math.max(0, dollarB + addOnShareB - paidB);
+html += line("9", "Minimum Child Support Obligation for Each Parent", "A " + fmt(obligationA) + " / B " + fmt(obligationB));
+
+// The parent with fewer overnights (the non-residential parent) remits their Line 9 obligation to the other parent.
+var obligorIsA = overnightsA < overnightsB;
+finalOwed = obligorIsA ? obligationA : obligationB;
 owedBy = obligorIsA ? "Parent A" : "Parent B";
 owedTo = obligorIsA ? "Parent B" : "Parent A";
-html += '<div class="result-row"><span>' + owedBy + '\'s income share of total obligation</span><span>' + fmt((base+addOns) * obligorShare) + '</span></div>';
-if ((payer === "A" && obligorIsA) || (payer === "B" && !obligorIsA)){
-html += '<div class="result-row"><span>Credit for add-ons ' + owedBy + ' already pays directly</span><span>-' + fmt(addOns) + '</span></div>';
-}
 } else {
-var soA15 = dollarA * 1.5;
-var soB15 = dollarB * 1.5;
-var transferFromA = soA15 * pctOvernightsB;
-var transferFromB = soB15 * pctOvernightsA;
-var diff = transferFromA - transferFromB; // positive: A owes B
-var addOnShareA = addOns * shareA;
-var addOnShareB = addOns * shareB;
-if (payer === "A"){
-diff -= addOnShareB; // B owes A for B's share of costs A fronted
-} else if (payer === "B"){
-diff += addOnShareA; // A owes B for A's share of costs B fronted
+var so150A = dollarA * 1.5;
+var so150B = dollarB * 1.5;
+html += line("10", "Basic Monthly Obligation &times; 150%", fmt(base*1.5));
+html += line("11", "Increased Basic Obligation for Each Parent", "A " + fmt(so150A) + " / B " + fmt(so150B));
+html += line("12", "Percentage of Overnights", "A " + Math.round(pctOvernightsA*100) + "% / B " + Math.round(pctOvernightsB*100) + "%");
+var transferFromA = so150A * pctOvernightsB;
+var transferFromB = so150B * pctOvernightsA;
+html += line("13", "Parent's Support &times; Other Parent's Overnight %", "A " + fmt(transferFromA) + " / B " + fmt(transferFromB));
+
+var line14d = addOns;
+if (line14d > 0){
+html += line("14d", "Total Monthly Child Care &amp; Health Costs", fmt(line14d));
 }
-html += '<div class="result-row"><span>Parent A obligation &times; 1.5 &times; Parent B overnight %</span><span>' + fmt(transferFromA) + '</span></div>';
-html += '<div class="result-row"><span>Parent B obligation &times; 1.5 &times; Parent A overnight %</span><span>' + fmt(transferFromB) + '</span></div>';
-if (addOns > 0){
-html += '<div class="result-row"><span>Add-on cost adjustment</span><span>' + fmt(payer === "A" ? -addOnShareB : (payer === "B" ? addOnShareA : 0)) + '</span></div>';
+var addOnShareA2 = line14d * shareA;
+var addOnShareB2 = line14d * shareB;
+if (line14d > 0){
+html += line("15", "Additional Support Payments", "A " + fmt(addOnShareA2) + " / B " + fmt(addOnShareB2));
 }
+if (paidA > 0 || paidB > 0){
+html += line("17", "Total Support Payments Actually Made", "A " + fmt(paidA) + " / B " + fmt(paidB));
+}
+var transferAmtA = Math.max(0, addOnShareA2 - paidA);
+var transferAmtB = Math.max(0, addOnShareB2 - paidB);
+html += line("18", "Total Additional Support Transfer Amount", "A " + fmt(transferAmtA) + " / B " + fmt(transferAmtB));
+var owedAtoB = transferFromA + transferAmtA;
+var owedBtoA = transferFromB + transferAmtB;
+html += line("19", "Total Child Support Owed from A to B", fmt(owedAtoB));
+html += line("20", "Total Child Support Owed from B to A", fmt(owedBtoA));
+
+var diff = owedAtoB - owedBtoA;
 finalOwed = Math.abs(diff);
 owedBy = diff >= 0 ? "Parent A" : "Parent B";
 owedTo = diff >= 0 ? "Parent B" : "Parent A";
 }
 
-html += '<div class="result-row total"><span>' + owedBy + ' pays ' + owedTo + '</span><span>' + fmt(finalOwed) + ' / month</span></div>';
+html += '<div class="result-row total"><span><span class="line-label">' + (substantial ? "Line 21" : "Line 9") + '</span>' + owedBy + ' pays ' + owedTo + '</span><span>' + fmt(finalOwed) + ' / month</span></div>';
 
 if (substantial){
-html += '<div class="result-note"><strong>Substantial time-sharing formula applied</strong> (both parents have at least 20% of overnights, Fla. Stat. 61.30(11)(b)). Overnights: Parent A ' + Math.round(overnightsA) + ', Parent B ' + Math.round(overnightsB) + '.</div>';
+html += '<div class="result-note"><strong>Substantial time-sharing formula applied</strong> (both parents have at least 20% of overnights, Fla. Stat. 61.30(11)(b); Worksheet Lines 10&ndash;21). Overnights: Parent A ' + Math.round(overnightsA) + ', Parent B ' + Math.round(overnightsB) + '.</div>';
 } else {
-html += '<div class="result-note"><strong>Standard guideline calculation applied</strong> (one parent has under 20% of overnights). Overnights: Parent A ' + Math.round(overnightsA) + ', Parent B ' + Math.round(overnightsB) + '.</div>';
+html += '<div class="result-note"><strong>Standard guideline calculation applied</strong> (one parent has under 20% of overnights; Worksheet Lines 1&ndash;9). Overnights: Parent A ' + Math.round(overnightsA) + ', Parent B ' + Math.round(overnightsB) + '.</div>';
 }
 
 if (combined > 10000){
@@ -594,7 +641,8 @@ if (resetBtn) resetBtn.addEventListener("click", function(){
 document.getElementById("incomeA").value = "3500";
 document.getElementById("incomeB").value = "2500";
 document.getElementById("numChildren").value = "2";
-document.getElementById("payer").value = "B";
+document.getElementById("childCarePayer").value = "B";
+document.getElementById("healthMedPayer").value = "B";
 document.getElementById("childCare").value = "0";
 document.getElementById("healthIns").value = "0";
 document.getElementById("overnightsA").value = "183";

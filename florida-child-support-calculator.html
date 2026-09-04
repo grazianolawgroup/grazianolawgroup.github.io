@@ -60,6 +60,13 @@ setTimeout(loadGtag, 3000);
 "name": "Florida Child Support Calculator",
 "description": "Estimate Florida child support under the Fla. Stat. 61.30 guidelines, following the line-by-line structure of the state's official Form 12.902(e) worksheet.",
 "url": "https://grazianolawgroup.com/florida-child-support-calculator.html",
+"author": {
+"@type": "Person",
+"name": "Philip W. Graziano",
+"jobTitle": "Attorney",
+"url": "https://grazianolawgroup.com/about.html"
+},
+"dateModified": "2026-09-04",
 "publisher": {
 "@type": "Organization",
 "name": "Graziano Law Group, PLLC",
@@ -68,6 +75,57 @@ setTimeout(loadGtag, 3000);
 "url": "https://grazianolawgroup.com/logo-mark.png"
 }
 }
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "WebApplication",
+"name": "Florida Child Support Calculator",
+"url": "https://grazianolawgroup.com/florida-child-support-calculator.html",
+"applicationCategory": "LegalService",
+"operatingSystem": "Any (web browser)",
+"description": "Free interactive tool that estimates Florida guideline child support under Fla. Stat. 61.30, following the line numbers of Form 12.902(e), the Child Support Guidelines Worksheet.",
+"offers": {
+"@type": "Offer",
+"price": "0",
+"priceCurrency": "USD"
+},
+"creator": {
+"@type": "Organization",
+"name": "Graziano Law Group, PLLC",
+"url": "https://grazianolawgroup.com/"
+}
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "HowTo",
+"name": "How to Estimate Florida Child Support",
+"description": "Steps to estimate Florida guideline child support using Fla. Stat. 61.30 and Form 12.902(e), the Child Support Guidelines Worksheet.",
+"step": [
+{
+"@type": "HowToStep",
+"name": "Enter each parent's net monthly income",
+"text": "Enter Parent A and Parent B's net monthly income after taxes, FICA, mandatory retirement contributions, and health insurance."
+},
+{
+"@type": "HowToStep",
+"name": "Enter the number of children and add-on costs",
+"text": "Select the number of children and enter monthly child care and health insurance or medical costs, and who pays them directly."
+},
+{
+"@type": "HowToStep",
+"name": "Enter time-sharing overnights",
+"text": "Enter the number of overnights per year Parent A has with the child. Parent B is assumed to have the remaining nights."
+},
+{
+"@type": "HowToStep",
+"name": "Calculate the estimate",
+"text": "Click Calculate Estimate to see the guideline child support amount, labeled to match the line numbers of the official Form 12.902(e) worksheet."
+}
+]
 }
 </script>
 <script type="application/ld+json">
@@ -191,6 +249,17 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 .btn-calc{background:#0d4b93;color:#fff;border:none;padding:13px 28px;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;}
 .btn-calc:hover{background:#0a3a73;}
 .btn-reset{background:transparent;color:#0d4b93;border:1px solid #0d4b93;padding:13px 22px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;}
+.btn-print{background:#fff;color:#0d4b93;border:1px solid #0d4b93;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:16px;}
+.btn-print:hover{background:#f0f6ff;}
+.calc-print-actions{margin-top:4px;}
+.print-only{display:none;}
+@media print{
+body *{visibility:hidden;}
+#printSummary, #printSummary *{visibility:visible;}
+#printSummary{display:block !important;position:absolute;left:0;top:0;width:100%;padding:24px;}
+.print-letterhead{font-size:13px;color:#334155;border-bottom:2px solid #0d4b93;padding-bottom:10px;margin-bottom:16px;}
+.print-footer{font-size:11px;color:#64748b;margin-top:16px;border-top:1px solid #cbd5e1;padding-top:10px;}
+}
 </style>
 </head>
 <body>
@@ -257,6 +326,7 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 <span class="hero-badge"><span class="dot" aria-hidden="true"></span> Interactive Tool</span>
 <h1>Florida Child Support Calculator</h1>
 <p class="lede">Get a plain-English estimate of Florida's guideline child support amount under Fla. Stat. &sect; 61.30. Results below are labeled to match the numbered lines of the state's official Form 12.902(e), Child Support Guidelines Worksheet, including the substantial time-sharing adjustment when both parents have the child at least 20% of overnights.</p>
+<p class="byline" style="font-size:14px;color:#5b6472;margin-top:-6px;">By <strong>Attorney Philip W. Graziano</strong>, Graziano Law Group, PLLC &middot; Serving Broward, Miami-Dade &amp; Palm Beach Counties &middot; Reviewed September 2026</p>
 </div>
 </section>
 
@@ -337,6 +407,7 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 </div>
 
 <div id="calcResults"></div>
+<div id="printSummary" class="print-only"></div>
 
 <div class="worksheet-cite">This calculator's line numbers and math follow <strong>Florida Family Law Rules of Procedure Form 12.902(e), Child Support Guidelines Worksheet</strong>, the form the Florida State Courts require you to file in any case where child support is requested. See the official form and instructions at <a href="https://www.flcourts.gov/Services/family-courts/domestic-relations-court-resources/family-law-forms/Additional-Supporting-Documents-12.902-Forms-B-J/child-support-guidelines-worksheet" target="_blank" rel="noopener">flcourts.gov</a>.</div>
 
@@ -616,6 +687,8 @@ owedTo = diff >= 0 ? "Parent B" : "Parent A";
 
 html += '<div class="result-row total"><span><span class="line-label">' + (substantial ? "Line 21" : "Line 9") + '</span>' + owedBy + ' pays ' + owedTo + '</span><span>' + fmt(finalOwed) + ' / month</span></div>';
 
+html += '<div class="calc-print-actions"><button type="button" class="btn-print" onclick="window.print()">Print / Save This Estimate</button></div>';
+
 if (substantial){
 html += '<div class="result-note"><strong>Substantial time-sharing formula applied</strong> (both parents have at least 20% of overnights, Fla. Stat. 61.30(11)(b); Worksheet Lines 10&ndash;21). Overnights: Parent A ' + Math.round(overnightsA) + ', Parent B ' + Math.round(overnightsB) + '.</div>';
 } else {
@@ -631,6 +704,12 @@ html += '<div class="result-note">Combined net income is below the guidelines sc
 
 resultsEl.style.display = "block";
 resultsEl.innerHTML = html;
+var printEl = document.getElementById("printSummary");
+if (printEl) {
+var letterhead = '<div class="print-letterhead"><strong>Graziano Law Group, PLLC</strong> &middot; 15800 Pines Blvd., Suite 3081, Pembroke Pines, FL 33027 &middot; (954) 440-6608<br>Florida Child Support Estimate | Generated ' + new Date().toLocaleDateString("en-US", {year:"numeric", month:"long", day:"numeric"}) + '</div>';
+var printFooter = '<div class="print-footer">This is an unofficial estimate for informational purposes only, prepared using Fla. Stat. 61.30 guidelines and Form 12.902(e) line numbers. Not a substitute for the worksheet filed with the court or for legal advice from Graziano Law Group, PLLC.</div>';
+printEl.innerHTML = letterhead + html + printFooter;
+}
 }
 
 document.addEventListener("DOMContentLoaded", function(){

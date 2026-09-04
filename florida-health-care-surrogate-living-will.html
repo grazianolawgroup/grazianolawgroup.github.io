@@ -355,12 +355,24 @@ src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
+var loaded=false;
+var events=['scroll','keydown','mousemove','touchstart','click'];
+function loadTawk(){
+if(loaded)return;
+loaded=true;
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
 s1.async=true;
 s1.src='https://embed.tawk.to/6a92d6b2e671c4344df6abbe/1k16pdah7';
 s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
+events.forEach(function(evt){window.removeEventListener(evt,loadTawk);});
+document.removeEventListener('visibilitychange',onVisChange);
+}
+events.forEach(function(evt){window.addEventListener(evt,loadTawk,{passive:true,once:true});});
+function onVisChange(){if(document.visibilityState==='hidden')loadTawk();}
+document.addEventListener('visibilitychange',onVisChange);
+setTimeout(loadTawk,3000);
 })();
 </script>
 <!--End of Tawk.to Script-->

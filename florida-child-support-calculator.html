@@ -210,8 +210,14 @@ setTimeout(loadGtag, 3000);
 ]
 }
 </script>
-<!-- Meta (Facebook) Pixel -->
+<!-- Meta (Facebook) Pixel (deferred until interaction/idle for performance) -->
 <script>
+(function(){
+var loaded=false;
+var events=['scroll','keydown','mousemove','touchstart','click'];
+function loadPixel(){
+if(loaded)return;
+loaded=true;
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -222,6 +228,14 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1486446063289183');
 fbq('track', 'PageView');
+events.forEach(function(evt){window.removeEventListener(evt,loadPixel);});
+document.removeEventListener('visibilitychange',onVisChange);
+}
+events.forEach(function(evt){window.addEventListener(evt,loadPixel,{passive:true,once:true});});
+function onVisChange(){if(document.visibilityState==='hidden')loadPixel();}
+document.addEventListener('visibilitychange',onVisChange);
+setTimeout(loadPixel,3000);
+})();
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1486446063289183&ev=PageView&noscript=1"

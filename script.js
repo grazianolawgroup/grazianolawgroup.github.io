@@ -276,3 +276,39 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 document.addEventListener('DOMContentLoaded', function () { var track = document.getElementById('testimonialTrack'); if (!track) return; var cards = track.querySelectorAll('.testimonial-card'); var dotsWrap = document.getElementById('tcDots'); var prevBtn = document.getElementById('tcPrev'); var nextBtn = document.getElementById('tcNext'); var carousel = document.getElementById('testimonialCarousel'); var current = 0; var total = cards.length; var timer = null; var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; cards.forEach(function (card, idx) { var dot = document.createElement('button'); dot.type = 'button'; dot.className = 'tc-dot' + (idx === 0 ? ' is-active' : ''); dot.setAttribute('aria-label', 'Show testimonial ' + (idx + 1) + ' of ' + total); dot.addEventListener('click', function () { goTo(idx); resetTimer(); }); dotsWrap.appendChild(dot); }); var dots = dotsWrap.querySelectorAll('.tc-dot'); function goTo(idx) { cards[current].classList.remove('is-active'); dots[current].classList.remove('is-active'); current = (idx + total) % total; cards[current].classList.add('is-active'); dots[current].classList.add('is-active'); } function next() { goTo(current + 1); } function prev() { goTo(current - 1); } function resetTimer() { if (timer) window.clearInterval(timer); if (!prefersReducedMotion) { timer = window.setInterval(next, 6000); } } if (prevBtn) prevBtn.addEventListener('click', function () { prev(); resetTimer(); }); if (nextBtn) nextBtn.addEventListener('click', function () { next(); resetTimer(); }); if (carousel) { carousel.addEventListener('mouseenter', function () { if (timer) window.clearInterval(timer); }); carousel.addEventListener('mouseleave', resetTimer); carousel.addEventListener('focusin', function () { if (timer) window.clearInterval(timer); }); carousel.addEventListener('focusout', resetTimer); } resetTimer(); });
+
+document.addEventListener('DOMContentLoaded', function () {
+  var statNums = document.querySelectorAll('.stat-strip .num[data-count]');
+  if (!statNums.length) return;
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) return;
+
+  function animateCount(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
+    if (isNaN(target)) return;
+    var duration = 1200;
+    var start = null;
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      var progress = Math.min((timestamp - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (progress < 1) window.requestAnimationFrame(step);
+    }
+    window.requestAnimationFrame(step);
+  }
+
+  statNums.forEach(function (el) { el.textContent = '0' + (el.getAttribute('data-suffix') || ''); });
+
+  var statObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        animateCount(entry.target);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  statNums.forEach(function (el) { statObserver.observe(el); });
+});

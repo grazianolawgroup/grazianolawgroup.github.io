@@ -207,6 +207,17 @@ updateScrollProgress();
     onScrollHeader();
   }
 
+    /* ---------- FAQ list stagger reveal setup ---------- */
+  document.querySelectorAll('.faq-list').forEach(function (list) {
+    list.classList.remove('reveal');
+    list.classList.add('reveal-group');
+    var items = list.querySelectorAll(':scope > details');
+    items.forEach(function (det, idx) {
+      det.classList.add('reveal');
+      det.style.setProperty('--reveal-index', idx);
+    });
+  });
+
   /* ---------- Reveal-on-scroll ---------- */
   var revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length) {
@@ -372,6 +383,24 @@ updateScrollProgress();
 });
 
 
+
+/* ---------- Smart sticky mobile call/text bar ---------- */
+document.addEventListener('DOMContentLoaded', function () {
+  var stickyBar = document.querySelector('.sticky-cta-bar');
+  if (!stickyBar) return;
+  var lastStickyY = window.scrollY;
+  var onStickyScroll = function () {
+    var y = window.scrollY;
+    if (y > lastStickyY && y > 220) {
+      stickyBar.classList.add('is-hidden');
+    } else {
+      stickyBar.classList.remove('is-hidden');
+    }
+    lastStickyY = y;
+  };
+  window.addEventListener('scroll', onStickyScroll, { passive: true });
+});
+
 document.addEventListener('DOMContentLoaded', function () {
   if (typeof gtag !== 'function') return;
   document.addEventListener('click', function (e) {
@@ -491,4 +520,45 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.4 });
 
   statNums.forEach(function (el) { statObserver.observe(el); });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  var copyTargets = document.querySelectorAll('.topbar .contact-line a[href^="tel:"], .topbar .contact-line a[href^="mailto:"]');
+  copyTargets.forEach(function (link) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copy-btn';
+    btn.setAttribute('aria-label', 'Copy to clipboard');
+    btn.innerHTML =
+      '<span class="copy-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>' +
+      '<span class="copy-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>';
+    link.insertAdjacentElement('afterend', btn);
+    var resetTimer = null;
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var raw = link.getAttribute('href').replace('tel:', '').replace('mailto:', '');
+      var value = link.textContent.trim() || raw;
+      var done = function () {
+        btn.classList.add('is-copied');
+        btn.setAttribute('aria-label', 'Copied');
+        window.clearTimeout(resetTimer);
+        resetTimer = window.setTimeout(function () {
+          btn.classList.remove('is-copied');
+          btn.setAttribute('aria-label', 'Copy to clipboard');
+        }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(done, function () {});
+      } else {
+        var temp = document.createElement('textarea');
+        temp.value = value;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.select();
+        try { document.execCommand('copy'); done(); } catch (err) {}
+        document.body.removeChild(temp);
+      }
+    });
+  });
 });

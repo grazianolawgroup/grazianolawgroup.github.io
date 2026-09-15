@@ -1562,3 +1562,89 @@ form.inquiry .field {
 form.inquiry .field:focus-within {
   transform: translateY(-2px);
 }
+
+
+/* ---------- Page load fade-in ---------- */
+body {
+  animation: pageFadeIn 0.45s ease both;
+}
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- Sticky CTA bar entrance ---------- */
+.sticky-cta-bar {
+  animation: stickyBarIn 0.5s var(--ease) 0.3s both;
+}
+@keyframes stickyBarIn {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* ---------- Active nav link indicator ---------- */
+nav.main-nav ul li { position: relative; }
+nav.main-nav ul a.active {
+  position: relative;
+}
+nav.main-nav ul a.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  transform-origin: center;
+  width: 4px;
+  height: 60%;
+  border-radius: 3px;
+  background: var(--blue);
+  animation: navActiveGrow 0.35s var(--ease) forwards;
+}
+@keyframes navActiveGrow {
+  to { transform: translateY(-50%) scaleY(1); }
+}
+
+/* ---------- Button hover lift ---------- */
+.btn {
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.15);
+}
+
+/* ---------- External link indicator ---------- */
+a.ext-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+a.ext-link .ext-icon {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  transition: transform var(--dur-fast) var(--ease);
+}
+a.ext-link:hover .ext-icon {
+  transform: translate(2px, -2px);
+}
+
+/* ---------- Hero scroll cue ---------- */
+.hero { position: relative; }
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 26px;
+  opacity: 0.6;
+  animation: scrollCueBounce 1.8s ease-in-out infinite;
+  pointer-events: none;
+  transition: opacity var(--dur-med) var(--ease);
+}
+.scroll-cue.is-hidden { opacity: 0; }
+@keyframes scrollCueBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}

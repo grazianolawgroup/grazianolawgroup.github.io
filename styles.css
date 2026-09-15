@@ -1310,3 +1310,30 @@ footer.site-footer {
 @media (hover: hover) {
   .virtual-item:hover .vi-icon { transform: scale(1.1) rotate(-4deg); }
 }
+
+/* ---------- Touch tap feedback (mirrors hover effects on devices without real hover) ---------- */
+@media (hover: none) {
+  .card:active { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+  .card:active .card-icon { transform: scale(1.08) rotate(-3deg); }
+  .btn-primary:active::after { left: 125%; }
+  .virtual-item:active .vi-icon { transform: scale(1.08) rotate(-3deg); }
+}
+
+/* ---------- Brand logo hover ---------- */
+.brand-logo { transition: transform var(--dur-med) var(--ease); }
+@media (hover: hover) {
+  .brand:hover .brand-logo { transform: rotate(-6deg) scale(1.08); }
+}
+
+/* ---------- Back-to-top hover nudge ---------- */
+.back-to-top svg { transition: transform var(--dur-fast) var(--ease); }
+@media (hover: hover) {
+  .back-to-top:hover svg { transform: translateY(-3px); }
+}
+
+/* ---------- Sticky mobile call button pulse ---------- */
+.sticky-cta-bar .sticky-call { animation: stickyPulse 2.6s ease-in-out infinite; }
+@keyframes stickyPulse {
+  0%, 100% { box-shadow: 0 6px 16px rgba(125, 212, 80, 0.35); }
+  50% { box-shadow: 0 6px 22px rgba(125, 212, 80, 0.6); }
+}

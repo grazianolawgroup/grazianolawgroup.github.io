@@ -1481,3 +1481,84 @@ to { opacity: 1; transform: none; }
 
 /* ---------- Hero parallax drift ---------- */
 .hero .container { will-change: transform; }
+
+/* ---------- Reveal-group per-item stagger fix ---------- */
+.reveal-group > .reveal {
+  transition-delay: calc(var(--reveal-index, 0) * 70ms);
+}
+
+/* ---------- Copy-to-clipboard button ---------- */
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-left: 4px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: currentColor;
+  opacity: 0.55;
+  cursor: pointer;
+  border-radius: 6px;
+  vertical-align: -4px;
+  position: relative;
+  transition: opacity var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.copy-btn:hover, .copy-btn:focus-visible {
+  opacity: 1;
+  background: rgba(255,255,255,0.14);
+}
+.copy-btn:active { transform: scale(0.86); }
+.copy-btn svg { width: 13px; height: 13px; display: block; }
+.copy-btn .copy-check { display: none; }
+.copy-btn.is-copied .copy-icon { display: none; }
+.copy-btn.is-copied .copy-check { display: inline-flex; color: var(--green-light); }
+.copy-btn::after {
+  content: 'Copied!';
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px) scale(0.9);
+  background: var(--blue-dark);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.copy-btn.is-copied::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* ---------- Testimonial star shimmer on active card ---------- */
+.testimonial-card.is-active .tc-stars {
+  background-size: 200% auto;
+  animation: starShimmer 2.6s ease-in-out infinite;
+}
+@keyframes starShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ---------- Smart sticky mobile call/text bar ---------- */
+.sticky-cta-bar {
+  transition: transform var(--dur-fast) var(--ease);
+}
+.sticky-cta-bar.is-hidden {
+  transform: translateY(110%);
+}
+
+/* ---------- Contact form field focus lift ---------- */
+form.inquiry .field {
+  transition: transform var(--dur-fast) var(--ease);
+}
+form.inquiry .field:focus-within {
+  transform: translateY(-2px);
+}

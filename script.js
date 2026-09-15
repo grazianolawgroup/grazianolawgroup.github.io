@@ -562,3 +562,41 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  /* ---------- External link indicators ---------- */
+  var links = document.querySelectorAll('a[href^="http"]');
+  links.forEach(function (link) {
+    if (link.classList.contains('btn') || link.querySelector('svg')) return;
+    try {
+      var url = new URL(link.href);
+      if (url.hostname && url.hostname !== window.location.hostname) {
+        link.classList.add('ext-link');
+        var icon = document.createElement('span');
+        icon.className = 'ext-icon';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg>';
+        link.appendChild(icon);
+      }
+    } catch (e) {}
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  /* ---------- Hero scroll cue ---------- */
+  var hero = document.querySelector('.hero');
+  if (!hero) return;
+  var cue = document.createElement('div');
+  cue.className = 'scroll-cue';
+  cue.setAttribute('aria-hidden', 'true');
+  cue.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M6 9l6 6 6-6"></path></svg>';
+  hero.appendChild(cue);
+  var onCueScroll = function () {
+    if (window.scrollY > 80) {
+      cue.classList.add('is-hidden');
+    } else {
+      cue.classList.remove('is-hidden');
+    }
+  };
+  window.addEventListener('scroll', onCueScroll, { passive: true });
+});

@@ -22,6 +22,105 @@ window.addEventListener('scroll', updateScrollProgress, { passive: true });
 window.addEventListener('resize', updateScrollProgress);
 updateScrollProgress();
 
+  /* ---------- FAQ accordion smooth expand/collapse ---------- */
+  document.querySelectorAll('.faq-list details').forEach(function (det) {
+    var summary = det.querySelector('summary');
+    if (!summary) return;
+    var panel = document.createElement('div');
+    panel.className = 'faq-panel';
+    var node = summary.nextSibling;
+    while (node) {
+      var next = node.nextSibling;
+      panel.appendChild(node);
+      node = next;
+    }
+    det.appendChild(panel);
+    if (det.hasAttribute('open')) {
+      panel.style.maxHeight = 'none';
+    }
+    summary.addEventListener('click', function (e) {
+      e.preventDefault();
+      var isOpen = det.hasAttribute('open');
+      if (isOpen) {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        requestAnimationFrame(function () {
+          panel.style.maxHeight = '0px';
+        });
+        var onCloseEnd = function () {
+          det.removeAttribute('open');
+          panel.removeEventListener('transitionend', onCloseEnd);
+        };
+        panel.addEventListener('transitionend', onCloseEnd);
+      } else {
+        det.setAttribute('open', '');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        var onOpenEnd = function () {
+          panel.style.maxHeight = 'none';
+          panel.removeEventListener('transitionend', onOpenEnd);
+        };
+        panel.addEventListener('transitionend', onOpenEnd);
+      }
+    });
+  });
+
+  /* ---------- 3D tilt + glare on cards ---------- */
+  if (window.matchMedia && window.matchMedia('(hover: hover)').matches && !prefersReducedMotion) {
+    document.querySelectorAll('.card').forEach(function (card) {
+      var glare = document.createElement('div');
+      glare.className = 'card-glare';
+      glare.setAttribute('aria-hidden', 'true');
+      card.appendChild(glare);
+      card.addEventListener('mousemove', function (e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var px = (x / rect.width) * 100;
+        var py = (y / rect.height) * 100;
+        var rx = ((y / rect.height) - 0.5) * -8;
+        var ry = ((x / rect.width) - 0.5) * 8;
+        card.style.transform = 'perspective(700px) translateY(-8px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+        glare.style.setProperty('--gx', px + '%');
+        glare.style.setProperty('--gy', py + '%');
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  /* ---------- Button click ripple ---------- */
+  document.querySelectorAll('.btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      if (prefersReducedMotion) return;
+      var rect = btn.getBoundingClientRect();
+      var size = Math.max(rect.width, rect.height);
+      var ripple = document.createElement('span');
+      ripple.className = 'btn-ripple';
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+      ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+      btn.appendChild(ripple);
+      ripple.addEventListener('animationend', function () {
+        ripple.remove();
+      });
+    });
+  });
+
+  /* ---------- Hero parallax drift ---------- */
+  var heroEl = document.querySelector('.hero');
+  if (heroEl && !prefersReducedMotion) {
+    var heroInner = heroEl.querySelector('.container');
+    var updateHeroParallax = function () {
+      var rect = heroEl.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      var offset = rect.top * -0.15;
+      if (heroInner) heroInner.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';
+    };
+    window.addEventListener('scroll', updateHeroParallax, { passive: true });
+    updateHeroParallax();
+  }
+
+
 
   /* ---------- Mobile navigation ---------- */
   var toggle = document.getElementById('navToggle');

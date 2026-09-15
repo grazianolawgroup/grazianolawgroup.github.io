@@ -1272,3 +1272,41 @@ footer.site-footer {
 @media (hover: hover) {
   .card:hover .card-icon { transform: scale(1.1) rotate(-4deg); }
 }
+
+/* ---------- More motion: hero entrance, button shine, testimonial fade, CTA drift ---------- */
+.hero-badge { animation: heroFadeUp 0.8s var(--ease) both; }
+.hero h1 { animation: heroFadeUp 0.8s var(--ease) 0.12s both; }
+.hero .lede { animation: heroFadeUp 0.8s var(--ease) 0.24s both; }
+.hero-actions { animation: heroFadeUp 0.8s var(--ease) 0.36s both; }
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+.btn-primary { overflow: hidden; }
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg);
+  transition: left 0.65s var(--ease);
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .btn-primary:hover::after { left: 125%; }
+}
+
+.testimonial-card.is-active { animation: tcFadeIn 0.5s var(--ease); }
+@keyframes tcFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.cta-band::before { animation: heroFloat1 10s ease-in-out infinite; }
+
+.vi-icon { transition: transform var(--dur-med) var(--ease); }
+@media (hover: hover) {
+  .virtual-item:hover .vi-icon { transform: scale(1.1) rotate(-4deg); }
+}

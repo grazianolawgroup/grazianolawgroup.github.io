@@ -1337,3 +1337,74 @@ footer.site-footer {
   0%, 100% { box-shadow: 0 6px 16px rgba(125, 212, 80, 0.35); }
   50% { box-shadow: 0 6px 22px rgba(125, 212, 80, 0.6); }
 }
+
+
+/* ---------- Scroll progress bar ---------- */
+.scroll-progress {
+position: fixed;
+top: 0;
+left: 0;
+height: 3px;
+width: 0%;
+background: var(--gradient-accent);
+z-index: 200;
+transition: width 0.15s ease-out;
+pointer-events: none;
+}
+
+/* ---------- Header shrink-on-scroll ---------- */
+.nav-wrap { transition: padding var(--dur-med) var(--ease); }
+.brand-logo { transition: transform var(--dur-med) var(--ease), width var(--dur-med) var(--ease), height var(--dur-med) var(--ease); }
+@media (min-width: 860px) {
+header.site-header.scrolled .nav-wrap { padding: 10px 0; }
+header.site-header.scrolled .brand-logo { width: 34px; height: 34px; }
+}
+
+/* ---------- Testimonial autoplay progress bar ---------- */
+.tc-progress {
+max-width: 220px;
+height: 4px;
+margin: var(--space-4) auto 0;
+background: var(--border);
+border-radius: 999px;
+overflow: hidden;
+}
+.tc-progress-fill {
+display: block;
+height: 100%;
+width: 0%;
+background: linear-gradient(90deg, #a3e57f, #7dd450);
+border-radius: 999px;
+animation: tcProgressFill 6s linear forwards;
+}
+@keyframes tcProgressFill {
+from { width: 0%; }
+to { width: 100%; }
+}
+
+/* ---------- Footer link underline ---------- */
+.footer-grid a { position: relative; }
+.footer-grid a::after {
+content: '';
+position: absolute;
+left: 0; bottom: -3px;
+width: 0%; height: 1px;
+background: var(--green-light);
+transition: width var(--dur-fast) var(--ease);
+}
+@media (hover: hover) {
+.footer-grid a:hover::after { width: 100%; }
+}
+
+/* ---------- Card icon pop-in on reveal ---------- */
+.js .reveal .card-icon {
+opacity: 0;
+transform: scale(0.6) rotate(-8deg);
+}
+.js .reveal.is-visible .card-icon {
+animation: iconPopIn 0.5s var(--ease) 0.15s both;
+}
+@keyframes iconPopIn {
+from { opacity: 0; transform: scale(0.6) rotate(-8deg); }
+to { opacity: 1; transform: none; }
+}

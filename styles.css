@@ -1648,3 +1648,98 @@ a.ext-link:hover .ext-icon {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(8px); }
 }
+
+
+/* ---------- Custom text selection ---------- */
+::selection {
+  background: var(--blue);
+  color: #fff;
+}
+::-moz-selection {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* ---------- Print styles ---------- */
+@media print {
+  nav.main-nav, .sticky-cta-bar, .back-to-top, .scroll-cue, .scroll-progress, .skip-link, .btn {
+    display: none !important;
+  }
+  body {
+    color: #000;
+    background: #fff;
+    animation: none !important;
+  }
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+  a[href^="http"]:not([href*="grazianolawgroup.com"])::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #444;
+  }
+  .hero {
+    padding: 16px 0;
+  }
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* ---------- Tel link click-to-call ---------- */
+a.tel-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform var(--dur-fast) var(--ease);
+}
+a.tel-link .tel-icon {
+  display: inline-flex;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+a.tel-link:hover,
+a.tel-link:focus-visible {
+  transform: translateX(1px);
+}
+a.tel-link:hover .tel-icon,
+a.tel-link:focus-visible .tel-icon {
+  animation: telRing 0.5s ease;
+}
+@keyframes telRing {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-15deg); }
+  40% { transform: rotate(12deg); }
+  60% { transform: rotate(-8deg); }
+  80% { transform: rotate(5deg); }
+}
+
+/* ---------- Form submit loading state ---------- */
+.inquiry button[type="submit"] {
+  position: relative;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.inquiry button[type="submit"].is-submitting {
+  color: transparent !important;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.inquiry button[type="submit"].is-submitting::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border: 2.5px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: btnSpin 0.7s linear infinite;
+}
+@keyframes btnSpin {
+  to { transform: rotate(360deg); }
+}

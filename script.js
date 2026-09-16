@@ -478,10 +478,17 @@ restartProgress();
 if (prevBtn) prevBtn.addEventListener('click', function () { prev(); resetTimer(); });
 if (nextBtn) nextBtn.addEventListener('click', function () { next(); resetTimer(); });
 if (carousel) {
+carousel.setAttribute('role', 'region');
+carousel.setAttribute('aria-roledescription', 'carousel');
+carousel.setAttribute('aria-label', 'Client testimonials');
 carousel.addEventListener('mouseenter', function () { if (timer) window.clearInterval(timer); pauseProgress(); });
 carousel.addEventListener('mouseleave', resetTimer);
 carousel.addEventListener('focusin', function () { if (timer) window.clearInterval(timer); pauseProgress(); });
 carousel.addEventListener('focusout', resetTimer);
+carousel.addEventListener('keydown', function (e) {
+if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); resetTimer(); }
+else if (e.key === 'ArrowRight') { e.preventDefault(); next(); resetTimer(); }
+});
 }
 resetTimer();
 });

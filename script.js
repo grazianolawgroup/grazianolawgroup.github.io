@@ -600,3 +600,28 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   window.addEventListener('scroll', onCueScroll, { passive: true });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  /* ---------- Tel link click-to-call icon ---------- */
+  var telLinks = document.querySelectorAll('a[href^="tel:"]');
+  telLinks.forEach(function (link) {
+    if (link.classList.contains('btn')) return;
+    link.classList.add('tel-link');
+    var icon = document.createElement('span');
+    icon.className = 'tel-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"></path></svg>';
+    link.appendChild(icon);
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  /* ---------- Form submit loading state ---------- */
+  var inquiryForm = document.querySelector('form.inquiry');
+  if (!inquiryForm) return;
+  inquiryForm.addEventListener('submit', function () {
+    if (!inquiryForm.checkValidity()) return;
+    var btn = inquiryForm.querySelector('button[type="submit"]');
+    if (btn) btn.classList.add('is-submitting');
+  });
+});

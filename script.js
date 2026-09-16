@@ -744,3 +744,73 @@ document.addEventListener('DOMContentLoaded', function () {
   toc.appendChild(list);
   container.insertBefore(toc, container.firstChild);
 });
+
+// ============ Reading time, external links, helpful widget (v17) ============
+document.addEventListener('DOMContentLoaded', function () {
+  var container = document.querySelector('.article-body');
+  if (!container) return;
+
+  var text = container.textContent || '';
+  var words = text.trim().split(/\s+/).filter(Boolean).length;
+
+  if (words > 150) {
+    var minutes = Math.max(1, Math.round(words / 200));
+    var badge = document.createElement('div');
+    badge.className = 'reading-time-badge';
+    badge.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>' + minutes + ' min read</span>';
+    container.insertBefore(badge, container.firstChild);
+  }
+
+  var links = container.querySelectorAll('a[href^="http"]');
+  links.forEach(function (a) {
+    try {
+      var url = new URL(a.href);
+      if (url.hostname && url.hostname !== window.location.hostname) {
+        a.classList.add('ext-link');
+        a.insertAdjacentHTML('beforeend', '<svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M7 7h10v10"></path></svg>');
+        if (!a.getAttribute('rel')) a.setAttribute('rel', 'noopener');
+      }
+    } catch (e) {}
+  });
+
+  if (words > 150) {
+    var HELPFUL_KEY = 'gzHelpful' + window.location.pathname;
+    var widget = document.createElement('div');
+    widget.className = 'helpful-widget';
+    widget.innerHTML =
+      '<p>Was this article helpful?</p>' +
+      '<div class="helpful-buttons">' +
+        '<button type="button" class="up" aria-label="Yes, this was helpful"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v12"></path><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"></path></svg><span>Yes</span></button>' +
+        '<button type="button" class="down" aria-label="No, this was not helpful"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v12"></path><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"></path></svg><span>No</span></button>' +
+      '</div>' +
+      '<p class="helpful-thanks">Thanks for the feedback!</p>';
+    container.appendChild(widget);
+
+    var stored = null;
+    try { stored = localStorage.getItem(HELPFUL_KEY); } catch (e) {}
+    if (stored) widget.classList.add('is-answered');
+
+    var helpfulButtons = widget.querySelectorAll('button');
+    helpfulButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        widget.classList.add('is-answered');
+        helpfulButtons.forEach(function (b) { b.classList.remove('is-selected'); });
+        btn.classList.add('is-selected');
+        try { localStorage.setItem(HELPFUL_KEY, btn.classList.contains('up') ? 'up' : 'down'); } catch (e) {}
+      });
+    });
+  }
+});
+
+// ============ Print button (v17) ============
+document.addEventListener('DOMContentLoaded', function () {
+  var fabGroup = document.querySelector('.utility-fab-group');
+  if (!fabGroup) return;
+  var printBtn = document.createElement('button');
+  printBtn.type = 'button';
+  printBtn.className = 'utility-fab print-fab';
+  printBtn.setAttribute('aria-label', 'Print this page');
+  printBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>';
+  printBtn.addEventListener('click', function () { window.print(); });
+  fabGroup.appendChild(printBtn);
+});

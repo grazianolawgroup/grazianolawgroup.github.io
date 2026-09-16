@@ -625,3 +625,122 @@ document.addEventListener('DOMContentLoaded', function () {
     if (btn) btn.classList.add('is-submitting');
   });
 });
+
+
+// ============ Dark mode toggle + copy-link + toast (v16) ============
+document.addEventListener('DOMContentLoaded', function () {
+  var root = document.documentElement;
+  var DARK_KEY = 'gzDarkMode';
+
+  var moonIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+  var sunIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>';
+  var linkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.5 4.5"></path><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L12.5 19.5"></path></svg>';
+
+  var group = document.createElement('div');
+  group.className = 'utility-fab-group';
+
+  var darkBtn = document.createElement('button');
+  darkBtn.type = 'button';
+  darkBtn.className = 'utility-fab dark-toggle';
+  group.appendChild(darkBtn);
+
+  var linkBtn = document.createElement('button');
+  linkBtn.type = 'button';
+  linkBtn.className = 'utility-fab copy-link-fab';
+  linkBtn.innerHTML = linkIcon;
+  linkBtn.setAttribute('aria-label', 'Copy link to this page');
+  group.appendChild(linkBtn);
+
+  document.body.appendChild(group);
+
+  function applyDarkMode(on) {
+    root.classList.toggle('dark-mode', on);
+    darkBtn.innerHTML = on ? sunIcon : moonIcon;
+    darkBtn.setAttribute('aria-label', on ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+
+  var storedDark = null;
+  try { storedDark = localStorage.getItem(DARK_KEY); } catch (e) {}
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var initialDark = storedDark === '1' ? true : (storedDark === '0' ? false : prefersDark);
+  applyDarkMode(initialDark);
+
+  darkBtn.addEventListener('click', function () {
+    var nowDark = !root.classList.contains('dark-mode');
+    applyDarkMode(nowDark);
+    try { localStorage.setItem(DARK_KEY, nowDark ? '1' : '0'); } catch (e) {}
+  });
+
+  var toastEl = null;
+  function showToast(msg) {
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.className = 'gz-toast';
+      toastEl.setAttribute('role', 'status');
+      document.body.appendChild(toastEl);
+    }
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-visible');
+    clearTimeout(toastEl._hideTimer);
+    toastEl._hideTimer = setTimeout(function () { toastEl.classList.remove('is-visible'); }, 2400);
+  }
+
+  linkBtn.addEventListener('click', function () {
+    var url = window.location.href;
+    function fallbackCopy() {
+      var ta = document.createElement('textarea');
+      ta.value = url;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      showToast('Link copied to clipboard');
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () {
+        showToast('Link copied to clipboard');
+      }).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+  });
+});
+
+// ============ Auto-generated table of contents for long guides (v16) ============
+document.addEventListener('DOMContentLoaded', function () {
+  var container = document.querySelector('.article-body');
+  if (!container) return;
+  var headings = container.querySelectorAll('h2');
+  if (headings.length < 3) return;
+
+  var usedIds = {};
+  function slugify(text) {
+    var base = (text || '').toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+    if (!base) base = 'section';
+    var id = base, n = 2;
+    while (usedIds[id] || document.getElementById(id)) { id = base + '-' + n; n++; }
+    usedIds[id] = true;
+    return id;
+  }
+
+  var list = document.createElement('ul');
+  headings.forEach(function (h) {
+    if (!h.id) { h.id = slugify(h.textContent); } else { usedIds[h.id] = true; }
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent;
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+
+  var toc = document.createElement('details');
+  toc.className = 'toc-widget';
+  var summary = document.createElement('summary');
+  summary.textContent = 'On This Page';
+  toc.appendChild(summary);
+  toc.appendChild(list);
+  container.insertBefore(toc, container.firstChild);
+});

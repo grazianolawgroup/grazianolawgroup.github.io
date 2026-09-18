@@ -2078,3 +2078,27 @@ html.dark-mode .reading-time-badge {
 #backToTop .ring-track { fill: none; stroke: rgba(255,255,255,0.28); stroke-width: 3; }
 #backToTop .ring-fill { fill: none; stroke: var(--green-light); stroke-width: 3; stroke-linecap: round; transition: stroke-dashoffset 0.1s linear; }
 @media (prefers-reduced-motion: reduce) { #backToTop .ring-fill { transition: none; } }
+
+
+/* ---------- Eyebrow pop-in ---------- */
+.reveal.is-visible .eyebrow { animation: eyebrowPop 0.5s cubic-bezier(.34,1.56,.64,1) both; }
+@keyframes eyebrowPop { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .reveal.is-visible .eyebrow { animation: none; } }
+
+/* ---------- Card top-border sweep ---------- */
+.card::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 3px; background: var(--gradient-accent); border-radius: var(--radius-md) var(--radius-md) 0 0; transition: width 0.4s ease; }
+@media (hover: hover) { .card:hover::before { width: 100%; } }
+@media (prefers-reduced-motion: reduce) { .card::before { transition: none; } }
+
+/* ---------- Nav CTA attention pulse ---------- */
+.btn-nav { animation: navCtaPulse 3.2s ease-in-out infinite; }
+@keyframes navCtaPulse { 0%, 100% { box-shadow: 0 10px 24px rgba(125, 212, 80, 0.35); } 50% { box-shadow: 0 10px 30px rgba(125, 212, 80, 0.65); } }
+@media (hover: hover) { .btn-nav:hover { animation-play-state: paused; } }
+@media (prefers-reduced-motion: reduce) { .btn-nav { animation: none; } }
+
+/* ---------- Testimonial quote mark ---------- */
+.tc-quote { position: relative; }
+.tc-quote::before { content: '\201C'; position: absolute; left: -22px; top: -10px; font-family: var(--serif); font-size: 2.6rem; font-style: normal; color: var(--green-light); opacity: 0; transform: scale(0.5); line-height: 1; transition: opacity 0.4s ease, transform 0.4s cubic-bezier(.34,1.56,.64,1); pointer-events: none; }
+.testimonial-card.is-active .tc-quote::before { opacity: 1; transform: scale(1); }
+@media (max-width: 599.98px) { .tc-quote::before { left: -14px; font-size: 2.1rem; } }
+@media (prefers-reduced-motion: reduce) { .tc-quote::before { transition: none; opacity: 1; transform: none; } }

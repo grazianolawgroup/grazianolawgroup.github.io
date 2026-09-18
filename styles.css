@@ -2013,3 +2013,68 @@ html.dark-mode .reading-time-badge {
 @media (max-width: 640px) {
   .trust-bar .trust-label { width: 100%; text-align: center; margin: 0 0 6px; }
 }
+
+
+/* ---------- Animated stat counter pop ---------- */
+.stat-strip .num.count-done { animation: statCountPop 0.4s ease; }
+@keyframes statCountPop { 0% { transform: scale(1); } 50% { transform: scale(1.16); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .stat-strip .num.count-done { animation: none; } }
+
+/* ---------- Animated star rating badge ---------- */
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+  font-family: var(--sans);
+}
+.rating-badge .stars { display: inline-flex; gap: 2px; }
+.rating-badge .stars svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--green-dark);
+  opacity: 0;
+  transform: scale(0.4) rotate(-25deg);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(.34,1.56,.64,1);
+}
+.rating-badge.is-visible .stars svg { opacity: 1; transform: scale(1) rotate(0); }
+.rating-badge.is-visible .stars svg:nth-child(1) { transition-delay: .05s; }
+.rating-badge.is-visible .stars svg:nth-child(2) { transition-delay: .12s; }
+.rating-badge.is-visible .stars svg:nth-child(3) { transition-delay: .19s; }
+.rating-badge.is-visible .stars svg:nth-child(4) { transition-delay: .26s; }
+.rating-badge.is-visible .stars svg:nth-child(5) { transition-delay: .33s; }
+.rating-badge .score { font-weight: 700; color: var(--blue-dark); font-size: 0.95rem; }
+.rating-badge .count { color: var(--gray); font-size: 0.85rem; }
+@media (prefers-reduced-motion: reduce) { .rating-badge .stars svg { opacity: 1; transform: none; transition: none; } }
+
+/* ---------- Form success checkmark draw-in ---------- */
+.form-banner .check-icon { width: 22px; height: 22px; flex-shrink: 0; margin-top: 1px; }
+.form-banner.success .check-icon circle {
+  stroke: var(--success);
+  stroke-width: 3;
+  stroke-dasharray: 146;
+  stroke-dashoffset: 146;
+  animation: checkDrawCircle 0.5s ease forwards;
+}
+.form-banner.success .check-icon path {
+  stroke: var(--success);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 32;
+  stroke-dashoffset: 32;
+  animation: checkDrawMark 0.35s ease forwards 0.45s;
+}
+@keyframes checkDrawCircle { to { stroke-dashoffset: 0; } }
+@keyframes checkDrawMark { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .form-banner.success .check-icon circle, .form-banner.success .check-icon path { animation: none; stroke-dashoffset: 0; }
+}
+
+/* ---------- Back-to-top scroll progress ring ---------- */
+#backToTop .progress-ring { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); pointer-events: none; }
+#backToTop .ring-track { fill: none; stroke: rgba(255,255,255,0.28); stroke-width: 3; }
+#backToTop .ring-fill { fill: none; stroke: var(--green-light); stroke-width: 3; stroke-linecap: round; transition: stroke-dashoffset 0.1s linear; }
+@media (prefers-reduced-motion: reduce) { #backToTop .ring-fill { transition: none; } }

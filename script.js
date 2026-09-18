@@ -567,42 +567,6 @@ resetTimer();
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-  var statNums = document.querySelectorAll('.stat-strip .num[data-count]');
-  if (!statNums.length) return;
-  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion || !('IntersectionObserver' in window)) return;
-
-  function animateCount(el) {
-    var target = parseInt(el.getAttribute('data-count'), 10);
-    var suffix = el.getAttribute('data-suffix') || '';
-    if (isNaN(target)) return;
-    var duration = 1200;
-    var start = null;
-    function step(timestamp) {
-      if (!start) start = timestamp;
-      var progress = Math.min((timestamp - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(eased * target) + suffix;
-      if (progress < 1) window.requestAnimationFrame(step);
-    }
-    window.requestAnimationFrame(step);
-  }
-
-  statNums.forEach(function (el) { el.textContent = '0' + (el.getAttribute('data-suffix') || ''); });
-
-  var statObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        animateCount(entry.target);
-        statObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.4 });
-
-  statNums.forEach(function (el) { statObserver.observe(el); });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
   var copyTargets = document.querySelectorAll('.topbar .contact-line a[href^="tel:"], .topbar .contact-line a[href^="mailto:"]');
   copyTargets.forEach(function (link) {
     var btn = document.createElement('button');

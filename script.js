@@ -243,6 +243,44 @@ updateScrollProgress();
     }
   }
 
+  /* ---------- Animated stat counters ---------- */
+  var statNums = document.querySelectorAll('.stat-strip .num');
+  if (statNums.length && !prefersReducedMotion && 'IntersectionObserver' in window) {
+    var animateStatCount = function (el) {
+      var raw = el.textContent.trim();
+      var match = raw.match(/^(\d+)(.*)$/);
+      if (!match) return;
+      var target = parseInt(match[1], 10);
+      var suffix = match[2];
+      if (isNaN(target)) return;
+      var duration = 900;
+      var startTime = null;
+      var step = function (ts) {
+        if (!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(eased * target);
+        el.textContent = current + suffix;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          el.textContent = target + suffix;
+          el.classList.add('count-done');
+        }
+      };
+      window.requestAnimationFrame(step);
+    };
+    var statObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateStatCount(entry.target);
+          statObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    statNums.forEach(function (el) { statObserver.observe(el); });
+  }
+
   /* ---------- Practice-areas quick nav: scroll-spy ---------- */
   var quickNavLinks = document.querySelectorAll('.quick-nav-list a');
   var practiceBlocks = document.querySelectorAll('.practice-block[id]');
@@ -282,7 +320,11 @@ updateScrollProgress();
 
     var showBanner = function (type, message) {
       if (!banner) return;
-      banner.textContent = message;
+      if (type === 'success') {
+        banner.innerHTML = '<svg class="check-icon" viewBox="0 0 52 52" aria-hidden="true"><circle class="check-circle" cx="26" cy="26" r="23" fill="none"/><path class="check-mark" fill="none" d="M14 27l7 7 17-17"/></svg><span>' + message + '</span>';
+      } else {
+        banner.textContent = message;
+      }
       banner.className = 'form-banner ' + type + ' is-visible';
     };
     var hideBanner = function () {
@@ -370,6 +412,37 @@ updateScrollProgress();
   /* ---------- Back to top ---------- */
   var backToTop = document.getElementById('backToTop');
   if (backToTop) {
+    if (!backToTop.querySelector('.progress-ring')) {
+      var ringSize = 46, ringRadius = 20, ringCirc = 2 * Math.PI * ringRadius;
+      var svgNS = 'http://www.w3.org/2000/svg';
+      var ringSVG = document.createElementNS(svgNS, 'svg');
+      ringSVG.setAttribute('class', 'progress-ring');
+      ringSVG.setAttribute('viewBox', '0 0 ' + ringSize + ' ' + ringSize);
+      ringSVG.setAttribute('aria-hidden', 'true');
+      var ringTrack = document.createElementNS(svgNS, 'circle');
+      ringTrack.setAttribute('class', 'ring-track');
+      ringTrack.setAttribute('cx', ringSize / 2);
+      ringTrack.setAttribute('cy', ringSize / 2);
+      ringTrack.setAttribute('r', ringRadius);
+      var ringFill = document.createElementNS(svgNS, 'circle');
+      ringFill.setAttribute('class', 'ring-fill');
+      ringFill.setAttribute('cx', ringSize / 2);
+      ringFill.setAttribute('cy', ringSize / 2);
+      ringFill.setAttribute('r', ringRadius);
+      ringFill.style.strokeDasharray = String(ringCirc);
+      ringFill.style.strokeDashoffset = String(ringCirc);
+      ringSVG.appendChild(ringTrack);
+      ringSVG.appendChild(ringFill);
+      backToTop.insertBefore(ringSVG, backToTop.firstChild);
+      var updateRing = function () {
+        var scrollTop = window.scrollY;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = docHeight > 0 ? Math.min(Math.max(scrollTop / docHeight, 0), 1) : 0;
+        ringFill.style.strokeDashoffset = String(ringCirc * (1 - pct));
+      };
+      window.addEventListener('scroll', updateRing, { passive: true });
+      updateRing();
+    }
     var toggleBackToTop = function () {
       if (window.scrollY > 640) backToTop.classList.add('is-visible');
       else backToTop.classList.remove('is-visible');

@@ -440,6 +440,7 @@ updateScrollProgress();
         .then(function (response) {
           if (submitBtn) {
             submitBtn.classList.remove('is-loading');
+            submitBtn.classList.remove('is-submitting');
             submitBtn.removeAttribute('aria-busy');
           }
           if (response.ok) {
@@ -455,6 +456,7 @@ updateScrollProgress();
         .catch(function () {
           if (submitBtn) {
             submitBtn.classList.remove('is-loading');
+            submitBtn.classList.remove('is-submitting');
             submitBtn.removeAttribute('aria-busy');
           }
           showBanner('error', 'Something went wrong sending your message. Please email us directly at pwg@grazianolawgroup.com or call (954) 440-6608.');

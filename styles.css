@@ -2102,3 +2102,45 @@ html.dark-mode .reading-time-badge {
 .testimonial-card.is-active .tc-quote::before { opacity: 1; transform: scale(1); }
 @media (max-width: 599.98px) { .tc-quote::before { left: -14px; font-size: 2.1rem; } }
 @media (prefers-reduced-motion: reduce) { .tc-quote::before { transition: none; opacity: 1; transform: none; } }
+
+
+/* ---------- Aurora hero glow (ambient drift) ---------- */
+.hero::before { animation: auroraDriftA 16s ease-in-out infinite alternate; }
+.hero::after { animation: auroraDriftB 20s ease-in-out infinite alternate; }
+@keyframes auroraDriftA {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.35; }
+  50% { transform: translate(-40px, 30px) scale(1.25); opacity: 0.5; }
+  100% { transform: translate(20px, -20px) scale(1.05); opacity: 0.3; }
+}
+@keyframes auroraDriftB {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.25; }
+  50% { transform: translate(35px, -25px) scale(1.2); opacity: 0.4; }
+  100% { transform: translate(-25px, 15px) scale(0.95); opacity: 0.2; }
+}
+
+/* ---------- Hero cursor glow (ambient spotlight) ---------- */
+.hero-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.20), transparent 70%);
+  pointer-events: none;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  mix-blend-mode: soft-light;
+}
+.hero-glow.is-active { opacity: 1; }
+
+/* ---------- Magnetic button pull ---------- */
+.hero-actions .btn.magnet-release, .cta-band .btn.magnet-release {
+  transition: transform 0.5s cubic-bezier(.34,1.56,.64,1), box-shadow var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+
+/* ---------- Page transition fade ---------- */
+body.page-exit { animation: pageFadeOut 0.22s ease forwards; }
+@keyframes pageFadeOut { to { opacity: 0; transform: translateY(-8px); } }

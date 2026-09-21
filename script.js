@@ -281,6 +281,59 @@ updateScrollProgress();
     statNums.forEach(function (el) { statObserver.observe(el); });
   }
 
+  /* ---------- Hero aurora cursor glow ---------- */
+  (function () {
+    var hero = document.querySelector('.hero');
+    if (!hero || prefersReducedMotion || !(window.matchMedia && window.matchMedia('(hover: hover)').matches)) return;
+    var glow = document.createElement('div');
+    glow.className = 'hero-glow';
+    glow.setAttribute('aria-hidden', 'true');
+    hero.appendChild(glow);
+    hero.addEventListener('mousemove', function (e) {
+      var rect = hero.getBoundingClientRect();
+      glow.style.left = (e.clientX - rect.left) + 'px';
+      glow.style.top = (e.clientY - rect.top) + 'px';
+      glow.classList.add('is-active');
+    });
+    hero.addEventListener('mouseleave', function () {
+      glow.classList.remove('is-active');
+    });
+  })();
+
+  /* ---------- Magnetic button pull ---------- */
+  if (window.matchMedia && window.matchMedia('(hover: hover)').matches && !prefersReducedMotion) {
+    document.querySelectorAll('.hero-actions .btn, .cta-band .btn').forEach(function (btn) {
+      btn.addEventListener('mousemove', function (e) {
+        btn.classList.remove('magnet-release');
+        var rect = btn.getBoundingClientRect();
+        var x = e.clientX - rect.left - rect.width / 2;
+        var y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = 'translate(' + (x * 0.22) + 'px, ' + (y * 0.22) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function () {
+        btn.classList.add('magnet-release');
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  /* ---------- Page transition fade ---------- */
+  if (!prefersReducedMotion) {
+    document.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var link = e.target.closest('a[href]');
+      if (!link || link.target === '_blank' || link.hasAttribute('download')) return;
+      var href = link.getAttribute('href');
+      if (!href || href.charAt(0) === '#' || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) return;
+      var url;
+      try { url = new URL(href, window.location.href); } catch (err) { return; }
+      if (url.origin !== window.location.origin) return;
+      e.preventDefault();
+      document.body.classList.add('page-exit');
+      window.setTimeout(function () { window.location.href = url.href; }, 220);
+    });
+  }
+
   /* ---------- Practice-areas quick nav: scroll-spy ---------- */
   var quickNavLinks = document.querySelectorAll('.quick-nav-list a');
   var practiceBlocks = document.querySelectorAll('.practice-block[id]');

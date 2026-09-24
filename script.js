@@ -2,11 +2,8 @@
   'use strict';
   document.documentElement.classList.add('js');
 })();
-
 document.addEventListener('DOMContentLoaded', function () {
   var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* ---------- Scroll progress bar ---------- */
 var scrollProgressBar = document.createElement('div');
 scrollProgressBar.className = 'scroll-progress';
 scrollProgressBar.setAttribute('aria-hidden', 'true');
@@ -21,8 +18,6 @@ scrollProgressBar.style.width = pct + '%';
 window.addEventListener('scroll', updateScrollProgress, { passive: true });
 window.addEventListener('resize', updateScrollProgress);
 updateScrollProgress();
-
-  /* ---------- FAQ accordion smooth expand/collapse ---------- */
   document.querySelectorAll('.faq-list details').forEach(function (det) {
     var summary = det.querySelector('summary');
     if (!summary) return;
@@ -62,8 +57,6 @@ updateScrollProgress();
       }
     });
   });
-
-  /* ---------- 3D tilt + glare on cards ---------- */
   if (window.matchMedia && window.matchMedia('(hover: hover)').matches && !prefersReducedMotion) {
     document.querySelectorAll('.card').forEach(function (card) {
       var glare = document.createElement('div');
@@ -87,8 +80,6 @@ updateScrollProgress();
       });
     });
   }
-
-  /* ---------- Button click ripple ---------- */
   document.querySelectorAll('.btn').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       if (prefersReducedMotion) return;
@@ -105,8 +96,6 @@ updateScrollProgress();
       });
     });
   });
-
-  /* ---------- Hero parallax drift ---------- */
   var heroEl = document.querySelector('.hero');
   if (heroEl && !prefersReducedMotion) {
     var heroInner = heroEl.querySelector('.container');
@@ -119,15 +108,10 @@ updateScrollProgress();
     window.addEventListener('scroll', updateHeroParallax, { passive: true });
     updateHeroParallax();
   }
-
-
-
-  /* ---------- Mobile navigation ---------- */
   var toggle = document.getElementById('navToggle');
   var nav = document.getElementById('mainNav');
   var scrim = document.getElementById('navScrim');
   var collapseTimer = null;
-
   function closeNav(returnFocus) {
     if (!nav || !toggle) return;
     nav.classList.remove('open');
@@ -141,12 +125,11 @@ updateScrollProgress();
     }, 380);
     if (returnFocus) toggle.focus();
   }
-
   function openNav() {
     if (!nav || !toggle) return;
     window.clearTimeout(collapseTimer);
     nav.classList.remove('nav-collapsed');
-    void nav.offsetWidth; /* force reflow so the slide-in transition starts from the off-screen position */
+    void nav.offsetWidth;
     nav.classList.add('open');
     toggle.classList.add('active');
     toggle.setAttribute('aria-expanded', 'true');
@@ -157,7 +140,6 @@ updateScrollProgress();
       if (firstLink) firstLink.focus();
     });
   }
-
   if (toggle && nav) {
     var lastToggleAt = 0;
     toggle.addEventListener('click', function (e) {
@@ -168,35 +150,28 @@ updateScrollProgress();
       var isOpen = nav.classList.contains('open');
       if (isOpen) { closeNav(false); } else { openNav(); }
     });
-
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && nav.classList.contains('open')) {
         closeNav(true);
       }
     });
-
     document.addEventListener('click', function (e) {
       if (!nav.classList.contains('open')) return;
       if (nav.contains(e.target) || toggle.contains(e.target)) return;
       closeNav(false);
     });
-
     if (scrim) {
       scrim.addEventListener('click', function () { closeNav(false); });
     }
-
     var navLinks = nav.querySelectorAll('a');
     for (var i = 0; i < navLinks.length; i++) {
       navLinks[i].addEventListener('click', function () { closeNav(false); });
     }
-
     var mq = window.matchMedia('(min-width: 860px)');
     var handleBreak = function () { if (mq.matches) closeNav(false); };
     if (mq.addEventListener) mq.addEventListener('change', handleBreak);
     else if (mq.addListener) mq.addListener(handleBreak);
   }
-
-  /* ---------- Sticky header shadow ---------- */
   var header = document.getElementById('siteHeader');
   if (header) {
     var onScrollHeader = function () {
@@ -206,8 +181,6 @@ updateScrollProgress();
     window.addEventListener('scroll', onScrollHeader, { passive: true });
     onScrollHeader();
   }
-
-    /* ---------- FAQ list stagger reveal setup ---------- */
   document.querySelectorAll('.faq-list').forEach(function (list) {
     list.classList.remove('reveal');
     list.classList.add('reveal-group');
@@ -217,8 +190,6 @@ updateScrollProgress();
       det.style.setProperty('--reveal-index', idx);
     });
   });
-
-  /* ---------- Reveal-on-scroll ---------- */
   var revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length) {
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
@@ -229,7 +200,6 @@ updateScrollProgress();
         var children = group.querySelectorAll('.reveal');
         children.forEach(function (child, idx) { child.style.setProperty('--reveal-index', idx); });
       });
-
       var revealObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
@@ -238,12 +208,9 @@ updateScrollProgress();
           }
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
       revealEls.forEach(function (el) { revealObserver.observe(el); });
     }
   }
-
-  /* ---------- Animated stat counters ---------- */
   var statNums = document.querySelectorAll('.stat-strip .num');
   if (statNums.length && !prefersReducedMotion && 'IntersectionObserver' in window) {
     var animateStatCount = function (el) {
@@ -280,8 +247,6 @@ updateScrollProgress();
     }, { threshold: 0.4 });
     statNums.forEach(function (el) { statObserver.observe(el); });
   }
-
-  /* ---------- Hero aurora cursor glow ---------- */
   (function () {
     var hero = document.querySelector('.hero');
     if (!hero || prefersReducedMotion || !(window.matchMedia && window.matchMedia('(hover: hover)').matches)) return;
@@ -299,8 +264,6 @@ updateScrollProgress();
       glow.classList.remove('is-active');
     });
   })();
-
-  /* ---------- Magnetic button pull ---------- */
   if (window.matchMedia && window.matchMedia('(hover: hover)').matches && !prefersReducedMotion) {
     document.querySelectorAll('.hero-actions .btn, .cta-band .btn').forEach(function (btn) {
       btn.addEventListener('mousemove', function (e) {
@@ -316,8 +279,6 @@ updateScrollProgress();
       });
     });
   }
-
-  /* ---------- Page transition fade ---------- */
   if (!prefersReducedMotion) {
     document.addEventListener('click', function (e) {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -333,8 +294,6 @@ updateScrollProgress();
       window.setTimeout(function () { window.location.href = url.href; }, 220);
     });
   }
-
-  /* ---------- Practice-areas quick nav: scroll-spy ---------- */
   var quickNavLinks = document.querySelectorAll('.quick-nav-list a');
   var practiceBlocks = document.querySelectorAll('.practice-block[id]');
   if (quickNavLinks.length && practiceBlocks.length && 'IntersectionObserver' in window) {
@@ -343,7 +302,6 @@ updateScrollProgress();
       var id = link.getAttribute('href').replace('#', '');
       linkById[id] = link;
     });
-
     var setActive = function (id) {
       quickNavLinks.forEach(function (link) { link.classList.remove('is-active'); link.removeAttribute('aria-current'); });
       var active = linkById[id];
@@ -355,22 +313,17 @@ updateScrollProgress();
         }
       }
     };
-
     var spyObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) setActive(entry.target.id);
       });
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-
     practiceBlocks.forEach(function (block) { spyObserver.observe(block); });
   }
-
-  /* ---------- Contact form: validation + micro-interactions ---------- */
   var form = document.querySelector('form.inquiry');
   if (form) {
     var submitBtn = form.querySelector('button[type="submit"]');
     var banner = form.querySelector('.form-banner');
-
     var showBanner = function (type, message) {
       if (!banner) return;
       if (type === 'success') {
@@ -384,7 +337,6 @@ updateScrollProgress();
       if (!banner) return;
       banner.className = 'form-banner';
     };
-
     var markField = function (field, invalid, message) {
       var wrap = field.closest('.field');
       if (!wrap) return;
@@ -392,7 +344,6 @@ updateScrollProgress();
       var msg = wrap.querySelector('.field-msg');
       if (msg && message) msg.textContent = message;
     };
-
     var fields = form.querySelectorAll('input, select, textarea');
     fields.forEach(function (field) {
       field.addEventListener('blur', function () {
@@ -407,7 +358,6 @@ updateScrollProgress();
         }
       });
     });
-
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       hideBanner();
@@ -422,16 +372,13 @@ updateScrollProgress();
         showBanner('error', 'Please fix the highlighted fields before sending your message.');
         return;
       }
-
       if (submitBtn) {
         submitBtn.classList.add('is-loading');
         submitBtn.setAttribute('aria-busy', 'true');
       }
-
       var payload = {};
       new FormData(form).forEach(function (value, key) { payload[key] = value; });
       var ajaxUrl = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
-
       fetch(ajaxUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -463,8 +410,6 @@ updateScrollProgress();
         });
     });
   }
-
-  /* ---------- Back to top ---------- */
   var backToTop = document.getElementById('backToTop');
   if (backToTop) {
     if (!backToTop.querySelector('.progress-ring')) {
@@ -509,10 +454,6 @@ updateScrollProgress();
     });
   }
 });
-
-
-
-/* ---------- Smart sticky mobile call/text bar ---------- */
 document.addEventListener('DOMContentLoaded', function () {
   var stickyBar = document.querySelector('.sticky-cta-bar');
   if (!stickyBar) return;
@@ -528,7 +469,6 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   window.addEventListener('scroll', onStickyScroll, { passive: true });
 });
-
 document.addEventListener('DOMContentLoaded', function () {
   if (typeof gtag !== 'function') return;
   document.addEventListener('click', function (e) {
@@ -620,7 +560,6 @@ else if (e.key === 'ArrowRight') { e.preventDefault(); next(); resetTimer(); }
 }
 resetTimer();
 });
-
 document.addEventListener('DOMContentLoaded', function () {
   var copyTargets = document.querySelectorAll('.topbar .contact-line a[href^="tel:"], .topbar .contact-line a[href^="mailto:"]');
   copyTargets.forEach(function (link) {
@@ -661,9 +600,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-
 document.addEventListener('DOMContentLoaded', function () {
-  /* ---------- External link indicators ---------- */
   var links = document.querySelectorAll('a[href^="http"]');
   links.forEach(function (link) {
     if (link.classList.contains('btn') || link.querySelector('svg')) return;
@@ -680,9 +617,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (e) {}
   });
 });
-
 document.addEventListener('DOMContentLoaded', function () {
-  /* ---------- Hero scroll cue ---------- */
   var hero = document.querySelector('.hero');
   if (!hero) return;
   var cue = document.createElement('div');
@@ -699,9 +634,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   window.addEventListener('scroll', onCueScroll, { passive: true });
 });
-
 document.addEventListener('DOMContentLoaded', function () {
-  /* ---------- Tel link click-to-call icon ---------- */
   var telLinks = document.querySelectorAll('a[href^="tel:"]');
   telLinks.forEach(function (link) {
     if (link.classList.contains('btn')) return;
@@ -713,9 +646,7 @@ document.addEventListener('DOMContentLoaded', function () {
     link.appendChild(icon);
   });
 });
-
 document.addEventListener('DOMContentLoaded', function () {
-  /* ---------- Form submit loading state ---------- */
   var inquiryForm = document.querySelector('form.inquiry');
   if (!inquiryForm) return;
   inquiryForm.addEventListener('submit', function () {
@@ -724,52 +655,40 @@ document.addEventListener('DOMContentLoaded', function () {
     if (btn) btn.classList.add('is-submitting');
   });
 });
-
-
-// ============ Dark mode toggle + copy-link + toast (v16) ============
 document.addEventListener('DOMContentLoaded', function () {
   var root = document.documentElement;
   var DARK_KEY = 'gzDarkMode';
-
   var moonIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
   var sunIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>';
   var linkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.5 4.5"></path><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L12.5 19.5"></path></svg>';
-
   var group = document.createElement('div');
   group.className = 'utility-fab-group';
-
   var darkBtn = document.createElement('button');
   darkBtn.type = 'button';
   darkBtn.className = 'utility-fab dark-toggle';
   group.appendChild(darkBtn);
-
   var linkBtn = document.createElement('button');
   linkBtn.type = 'button';
   linkBtn.className = 'utility-fab copy-link-fab';
   linkBtn.innerHTML = linkIcon;
   linkBtn.setAttribute('aria-label', 'Copy link to this page');
   group.appendChild(linkBtn);
-
   document.body.appendChild(group);
-
   function applyDarkMode(on) {
     root.classList.toggle('dark-mode', on);
     darkBtn.innerHTML = on ? sunIcon : moonIcon;
     darkBtn.setAttribute('aria-label', on ? 'Switch to light mode' : 'Switch to dark mode');
   }
-
   var storedDark = null;
   try { storedDark = localStorage.getItem(DARK_KEY); } catch (e) {}
   var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   var initialDark = storedDark === '1' ? true : (storedDark === '0' ? false : prefersDark);
   applyDarkMode(initialDark);
-
   darkBtn.addEventListener('click', function () {
     var nowDark = !root.classList.contains('dark-mode');
     applyDarkMode(nowDark);
     try { localStorage.setItem(DARK_KEY, nowDark ? '1' : '0'); } catch (e) {}
   });
-
   var toastEl = null;
   function showToast(msg) {
     if (!toastEl) {
@@ -783,7 +702,6 @@ document.addEventListener('DOMContentLoaded', function () {
     clearTimeout(toastEl._hideTimer);
     toastEl._hideTimer = setTimeout(function () { toastEl.classList.remove('is-visible'); }, 2400);
   }
-
   linkBtn.addEventListener('click', function () {
     var url = window.location.href;
     function fallbackCopy() {
@@ -806,14 +724,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
-
-// ============ Auto-generated table of contents for long guides (v16) ============
 document.addEventListener('DOMContentLoaded', function () {
   var container = document.querySelector('.article-body');
   if (!container) return;
   var headings = container.querySelectorAll('h2');
   if (headings.length < 3) return;
-
   var usedIds = {};
   function slugify(text) {
     var base = (text || '').toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
@@ -823,7 +738,6 @@ document.addEventListener('DOMContentLoaded', function () {
     usedIds[id] = true;
     return id;
   }
-
   var list = document.createElement('ul');
   headings.forEach(function (h) {
     if (!h.id) { h.id = slugify(h.textContent); } else { usedIds[h.id] = true; }
@@ -834,7 +748,6 @@ document.addEventListener('DOMContentLoaded', function () {
     li.appendChild(a);
     list.appendChild(li);
   });
-
   var toc = document.createElement('details');
   toc.className = 'toc-widget';
   var summary = document.createElement('summary');
@@ -843,15 +756,11 @@ document.addEventListener('DOMContentLoaded', function () {
   toc.appendChild(list);
   container.insertBefore(toc, container.firstChild);
 });
-
-// ============ Reading time, external links, helpful widget (v17) ============
 document.addEventListener('DOMContentLoaded', function () {
   var container = document.querySelector('.article-body');
   if (!container) return;
-
   var text = container.textContent || '';
   var words = text.trim().split(/\s+/).filter(Boolean).length;
-
   if (words > 150) {
     var minutes = Math.max(1, Math.round(words / 200));
     var badge = document.createElement('div');
@@ -859,7 +768,6 @@ document.addEventListener('DOMContentLoaded', function () {
     badge.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>' + minutes + ' min read</span>';
     container.insertBefore(badge, container.firstChild);
   }
-
   var links = container.querySelectorAll('a[href^="http"]');
   links.forEach(function (a) {
     try {
@@ -871,7 +779,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     } catch (e) {}
   });
-
   if (words > 150) {
     var HELPFUL_KEY = 'gzHelpful' + window.location.pathname;
     var widget = document.createElement('div');
@@ -884,11 +791,9 @@ document.addEventListener('DOMContentLoaded', function () {
       '</div>' +
       '<p class="helpful-thanks">Thanks for the feedback!</p>';
     container.appendChild(widget);
-
     var stored = null;
     try { stored = localStorage.getItem(HELPFUL_KEY); } catch (e) {}
     if (stored) widget.classList.add('is-answered');
-
     var helpfulButtons = widget.querySelectorAll('button');
     helpfulButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -900,8 +805,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-
-// ============ Print button (v17) ============
 document.addEventListener('DOMContentLoaded', function () {
   var fabGroup = document.querySelector('.utility-fab-group');
   if (!fabGroup) return;
@@ -913,14 +816,10 @@ document.addEventListener('DOMContentLoaded', function () {
   printBtn.addEventListener('click', function () { window.print(); });
   fabGroup.appendChild(printBtn);
 });
-
-
-// ---------- Footer: review CTA + analytics-cookie notice ----------
 document.addEventListener('DOMContentLoaded', function () {
   var fb = document.querySelector('.footer-bottom');
   if (!fb || fb.dataset.enhanced) return;
   fb.dataset.enhanced = 'true';
-
   var reviewSpan = document.createElement('span');
   var reviewLink = document.createElement('a');
   reviewLink.href = 'https://www.avvo.com/attorneys/33027-fl-philip-graziano-4964024.html';
@@ -929,7 +828,6 @@ document.addEventListener('DOMContentLoaded', function () {
   reviewLink.textContent = 'Leave Us a Review';
   reviewSpan.appendChild(reviewLink);
   fb.appendChild(reviewSpan);
-
   var cookieSpan = document.createElement('span');
   cookieSpan.textContent = 'This site uses analytics cookies.';
   fb.appendChild(cookieSpan);

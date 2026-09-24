@@ -334,4 +334,22 @@
 <changefreq>yearly</changefreq>
 <priority>0.6</priority>
 </url>
+  <url>
+    <loc>https://grazianolawgroup.com/florida-summary-administration-guide.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://grazianolawgroup.com/florida-medicaid-asset-protection-guide.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://grazianolawgroup.com/florida-domestic-violence-injunction-guide.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

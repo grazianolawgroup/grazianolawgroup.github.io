@@ -913,3 +913,24 @@ document.addEventListener('DOMContentLoaded', function () {
   printBtn.addEventListener('click', function () { window.print(); });
   fabGroup.appendChild(printBtn);
 });
+
+
+// ---------- Footer: review CTA + analytics-cookie notice ----------
+document.addEventListener('DOMContentLoaded', function () {
+  var fb = document.querySelector('.footer-bottom');
+  if (!fb || fb.dataset.enhanced) return;
+  fb.dataset.enhanced = 'true';
+
+  var reviewSpan = document.createElement('span');
+  var reviewLink = document.createElement('a');
+  reviewLink.href = 'https://www.avvo.com/attorneys/33027-fl-philip-graziano-4964024.html';
+  reviewLink.target = '_blank';
+  reviewLink.rel = 'noopener';
+  reviewLink.textContent = 'Leave Us a Review';
+  reviewSpan.appendChild(reviewLink);
+  fb.appendChild(reviewSpan);
+
+  var cookieSpan = document.createElement('span');
+  cookieSpan.textContent = 'This site uses analytics cookies.';
+  fb.appendChild(cookieSpan);
+});

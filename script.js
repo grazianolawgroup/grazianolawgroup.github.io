@@ -829,6 +829,6 @@ document.addEventListener('DOMContentLoaded', function () {
   reviewSpan.appendChild(reviewLink);
   fb.appendChild(reviewSpan);
   var cookieSpan = document.createElement('span');
-  cookieSpan.textContent = 'This site uses analytics cookies.';
+  cookieSpan.textContent = 'This site uses analytics and advertising cookies. See our Privacy Policy.';
   fb.appendChild(cookieSpan);
 });

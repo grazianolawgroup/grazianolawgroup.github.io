@@ -3,3 +3,4 @@
 /*brandfit*/@media (min-width:992px){.brand .name{font-size:1.15rem}.brand .tagline{letter-spacing:1.1px}}@media (min-width:992px) and (max-width:1199px){.brand .name{font-size:1.02rem}.brand-logo{width:36px;height:36px}.brand{gap:9px}}
 /*navfit*/@media (min-width:992px){.main-nav a:not(.btn){padding-left:10px;padding-right:10px}}@media (min-width:992px) and (max-width:1199px){.main-nav a:not(.btn){padding-left:7px;padding-right:7px;font-size:.92rem}.main-nav .btn-nav{padding-left:14px;padding-right:14px}}
 /*navfit2*/@media (min-width:1200px){.brand .name{font-size:1.06rem}}@media (min-width:992px) and (max-width:1139px){.main-nav a:not(.btn){padding-left:5px;padding-right:5px;font-size:.88rem}.main-nav .btn-nav{padding-left:11px;padding-right:11px;font-size:.88rem}.brand .name{font-size:.95rem}}
+/*navfit3*/@media (min-width:992px){.brand .tagline{font-size:.62rem;letter-spacing:.9px}}
